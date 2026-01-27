@@ -1,0 +1,34 @@
+import { ElementRef, QueryList, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { FormGroup, AbstractControl } from '@angular/forms';
+import * as i0 from "@angular/core";
+export declare class CustomOtpInputFormComponent implements OnInit, AfterViewInit, OnDestroy {
+    parentForm: FormGroup;
+    controlName: string;
+    showError: boolean;
+    length: number;
+    boxes: QueryList<ElementRef<HTMLInputElement>>;
+    valueArr: string[];
+    private sub?;
+    ngOnInit(): void;
+    ngAfterViewInit(): void;
+    ngOnDestroy(): void;
+    get control(): AbstractControl;
+    private assertControl;
+    private getBox;
+    private focusBox;
+    private selectBox;
+    private move;
+    private emitFormValue;
+    private setAt;
+    private clearAt;
+    private syncBoxesFromControl;
+    private onlyDigit;
+    private extractDigits;
+    private fillFromIndex;
+    onInput(e: Event, i: number): void;
+    onKeyDown(e: KeyboardEvent, i: number): void;
+    onPaste(e: ClipboardEvent, i: number): void;
+    get indexes(): number[];
+    static ɵfac: i0.ɵɵFactoryDeclaration<CustomOtpInputFormComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CustomOtpInputFormComponent, "custom-otp-input-form", never, { "parentForm": { "alias": "parentForm"; "required": true; }; "controlName": { "alias": "controlName"; "required": true; }; "showError": { "alias": "showError"; "required": false; }; "length": { "alias": "length"; "required": false; }; }, {}, never, never, true, never>;
+}
