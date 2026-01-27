@@ -1,6 +1,6 @@
 {
   "name": "ivr-components-shared-lib",
-  "version": "0.0.0-watch+1769516400878",
+  "version": "0.0.2",
   "files": [
     "dist"
   ],
