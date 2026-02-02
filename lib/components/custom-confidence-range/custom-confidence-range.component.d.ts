@@ -1,0 +1,40 @@
+import { EventEmitter, OnInit, ElementRef } from '@angular/core';
+import { IDropdownOption } from '../../interfaces';
+import * as i0 from "@angular/core";
+export declare class CustomConfidenceRangeComponent implements OnInit {
+    private elementRef;
+    confidenceMin: number | undefined;
+    confidenceMax: number | undefined;
+    label: string;
+    confidenceMinChange: EventEmitter<number | undefined>;
+    confidenceMaxChange: EventEmitter<number | undefined>;
+    rangeChange: EventEmitter<{
+        min: number | undefined;
+        max: number | undefined;
+    }>;
+    confidenceRanges: IDropdownOption[];
+    showCustomOption: boolean;
+    selectedRange: IDropdownOption | null;
+    showCustomInputs: boolean;
+    isOpen: boolean;
+    pendingMin: number | undefined;
+    pendingMax: number | undefined;
+    pendingRange: IDropdownOption | null;
+    constructor(elementRef: ElementRef);
+    ngOnInit(): void;
+    private checkCustomOption;
+    toggleConfidenceRange(): void;
+    closeConfidenceRange(): void;
+    onDocumentClick(event: MouseEvent): void;
+    getDisplayText(): string;
+    detectInitialRange(): void;
+    onRangeChange(option: any): void;
+    onMinChange(event: any): void;
+    onMaxChange(event: any): void;
+    onApply(): void;
+    onCancel(): void;
+    private resetPendingState;
+    private emitChanges;
+    static ɵfac: i0.ɵɵFactoryDeclaration<CustomConfidenceRangeComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CustomConfidenceRangeComponent, "custom-confidence-range", never, { "confidenceMin": { "alias": "confidenceMin"; "required": false; }; "confidenceMax": { "alias": "confidenceMax"; "required": false; }; "label": { "alias": "label"; "required": false; }; "confidenceRanges": { "alias": "confidenceRanges"; "required": false; }; "showCustomOption": { "alias": "showCustomOption"; "required": false; }; }, { "confidenceMinChange": "confidenceMinChange"; "confidenceMaxChange": "confidenceMaxChange"; "rangeChange": "rangeChange"; }, never, never, true, never>;
+}

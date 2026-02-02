@@ -5,6 +5,7 @@ export declare class CustomMultiSelectFilterComponent implements OnInit {
     label: string;
     options: any[];
     selectedValues: any[];
+    mode: 'single' | 'multi';
     valueChange: EventEmitter<any[]>;
     cancel: EventEmitter<void>;
     tempSelectedValues: any[];
@@ -18,5 +19,5 @@ export declare class CustomMultiSelectFilterComponent implements OnInit {
     onCancel(): void;
     onDocumentClick(event: MouseEvent): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<CustomMultiSelectFilterComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<CustomMultiSelectFilterComponent, "custom-multi-select-filter", never, { "label": { "alias": "label"; "required": false; }; "options": { "alias": "options"; "required": false; }; "selectedValues": { "alias": "selectedValues"; "required": false; }; }, { "valueChange": "valueChange"; "cancel": "cancel"; }, never, never, true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CustomMultiSelectFilterComponent, "custom-multi-select-filter", never, { "label": { "alias": "label"; "required": false; }; "options": { "alias": "options"; "required": false; }; "selectedValues": { "alias": "selectedValues"; "required": false; }; "mode": { "alias": "mode"; "required": false; }; }, { "valueChange": "valueChange"; "cancel": "cancel"; }, never, never, true, never>;
 }

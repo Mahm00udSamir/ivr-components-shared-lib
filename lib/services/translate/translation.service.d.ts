@@ -1,13 +1,14 @@
+import { TranslateService } from '@ngx-translate/core';
 import * as i0 from "@angular/core";
 export declare enum Lang {
     ar = "ar",
     en = "en"
 }
 export declare class TranslationService {
+    private translate;
     rtl: boolean;
     currentLang: import("@angular/core").WritableSignal<"en" | "ar">;
-    private translate;
-    constructor();
+    constructor(translate: TranslateService);
     setDefaultLang(defaultLang?: string): void;
     changeLang(lang: Lang): void;
     switchLanguage(): void;

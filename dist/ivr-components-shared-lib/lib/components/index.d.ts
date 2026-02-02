@@ -62,4 +62,5 @@ export * from './custom-status-label/custom-status-label.component';
 export * from './custom-profile-img-input/custom-profile-img-input.component';
 export * from './custom-multi-select-filter/custom-multi-select-filter.component';
 export * from './custom-date-range/custom-date-range.component';
+export * from './custom-confidence-range/custom-confidence-range.component';
 export * from './custom-input/custom-input.component';

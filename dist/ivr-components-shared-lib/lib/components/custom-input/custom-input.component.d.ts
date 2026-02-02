@@ -7,7 +7,7 @@ export declare class CustomInputComponent implements ControlValueAccessor {
     errorMessage: string;
     showError: boolean;
     id: string;
-    value: string;
+    value: any;
     disabled: boolean;
     showPassword: boolean;
     onChange: any;
@@ -21,5 +21,5 @@ export declare class CustomInputComponent implements ControlValueAccessor {
     togglePasswordVisibility(): void;
     get inputType(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<CustomInputComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<CustomInputComponent, "custom-input", never, { "label": { "alias": "label"; "required": false; }; "placeholder": { "alias": "placeholder"; "required": false; }; "type": { "alias": "type"; "required": false; }; "errorMessage": { "alias": "errorMessage"; "required": false; }; "showError": { "alias": "showError"; "required": false; }; "id": { "alias": "id"; "required": false; }; }, {}, never, never, true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CustomInputComponent, "custom-input", never, { "label": { "alias": "label"; "required": false; }; "placeholder": { "alias": "placeholder"; "required": false; }; "type": { "alias": "type"; "required": false; }; "errorMessage": { "alias": "errorMessage"; "required": false; }; "showError": { "alias": "showError"; "required": false; }; "id": { "alias": "id"; "required": false; }; "value": { "alias": "value"; "required": false; }; }, {}, never, never, true, never>;
 }
