@@ -420,6 +420,7 @@ class AuthService {
     }
     login(data) {
         return this.authBeService.login(data).pipe(tap((res) => {
+            console.log('Login response:', res);
             if (res.status === 'success' || res.success) {
                 this.authContextService.saveTokens(res.data);
                 console.log('Login response in service:', res);
@@ -454,7 +455,7 @@ class AuthService {
             next: (res) => {
                 if (res.success) {
                     this.authContextService.saveTokens(res.data);
-                    window.location.reload();
+                    // window.location.reload();
                 }
                 else {
                     this.logOutUser();
@@ -7946,6 +7947,7 @@ const ErrorInterceptor = (req, next) => {
                     break;
                 }
             case 401:
+                toastService.toast(error.error.message, 'top-center', 'error', 2000);
                 authService.handleRefreshToken();
                 break;
             case 403:
