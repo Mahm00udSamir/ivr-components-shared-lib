@@ -4,6 +4,12 @@ export declare class CustomInputComponent implements ControlValueAccessor {
     label: string;
     placeholder: string;
     type: 'text' | 'email' | 'password' | 'number';
+    prefix: string;
+    suffix: string;
+    showStepper: boolean;
+    step: number;
+    min: number | null;
+    max: number | null;
     errorMessage: string;
     showError: boolean;
     id: string;
@@ -17,9 +23,12 @@ export declare class CustomInputComponent implements ControlValueAccessor {
     registerOnTouched(fn: any): void;
     setDisabledState(isDisabled: boolean): void;
     onInputChange(event: Event): void;
+    decrement(): void;
+    increment(): void;
+    private updateStepperValue;
     onBlur(): void;
     togglePasswordVisibility(): void;
     get inputType(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<CustomInputComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<CustomInputComponent, "custom-input", never, { "label": { "alias": "label"; "required": false; }; "placeholder": { "alias": "placeholder"; "required": false; }; "type": { "alias": "type"; "required": false; }; "errorMessage": { "alias": "errorMessage"; "required": false; }; "showError": { "alias": "showError"; "required": false; }; "id": { "alias": "id"; "required": false; }; "value": { "alias": "value"; "required": false; }; }, {}, never, never, true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CustomInputComponent, "custom-input", never, { "label": { "alias": "label"; "required": false; }; "placeholder": { "alias": "placeholder"; "required": false; }; "type": { "alias": "type"; "required": false; }; "prefix": { "alias": "prefix"; "required": false; }; "suffix": { "alias": "suffix"; "required": false; }; "showStepper": { "alias": "showStepper"; "required": false; }; "step": { "alias": "step"; "required": false; }; "min": { "alias": "min"; "required": false; }; "max": { "alias": "max"; "required": false; }; "errorMessage": { "alias": "errorMessage"; "required": false; }; "showError": { "alias": "showError"; "required": false; }; "id": { "alias": "id"; "required": false; }; "value": { "alias": "value"; "required": false; }; }, {}, never, never, true, never>;
 }

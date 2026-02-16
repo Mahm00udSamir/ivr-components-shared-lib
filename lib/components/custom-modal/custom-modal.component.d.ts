@@ -5,6 +5,7 @@ export declare class CustomModalComponent {
     modalIcon: string;
     overlayClickClose: boolean;
     showHeader: boolean;
+    position: 'center' | 'start' | 'end';
     hideEvent: EventEmitter<void>;
     closed: EventEmitter<void>;
     isVisible: boolean;
@@ -21,5 +22,5 @@ export declare class CustomModalComponent {
     attachContent<T>(component: Type<T>, extraProviders?: Provider[]): ComponentRef<T>;
     private clearDynamicContent;
     static ɵfac: i0.ɵɵFactoryDeclaration<CustomModalComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<CustomModalComponent, "modal", never, { "modalTitle": { "alias": "modalTitle"; "required": false; }; "modalIcon": { "alias": "modalIcon"; "required": false; }; "overlayClickClose": { "alias": "overlayClickClose"; "required": false; }; "showHeader": { "alias": "showHeader"; "required": false; }; }, { "hideEvent": "hideEvent"; "closed": "closed"; }, never, ["*"], true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CustomModalComponent, "modal", never, { "modalTitle": { "alias": "modalTitle"; "required": false; }; "modalIcon": { "alias": "modalIcon"; "required": false; }; "overlayClickClose": { "alias": "overlayClickClose"; "required": false; }; "showHeader": { "alias": "showHeader"; "required": false; }; "position": { "alias": "position"; "required": false; }; }, { "hideEvent": "hideEvent"; "closed": "closed"; }, never, ["*"], true, never>;
 }

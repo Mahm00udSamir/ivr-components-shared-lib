@@ -15,6 +15,7 @@ export declare class CustomMultiSelectComponent {
     value: any[];
     height: string;
     showSelectedCountOnly: boolean;
+    hideInput: boolean;
     valueChange: EventEmitter<any[]>;
     clear: EventEmitter<void>;
     isOpen: boolean;
@@ -31,5 +32,5 @@ export declare class CustomMultiSelectComponent {
     filterOptions(): void;
     set reset(value: boolean);
     static ɵfac: i0.ɵɵFactoryDeclaration<CustomMultiSelectComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<CustomMultiSelectComponent, "custom-multi-select", never, { "label": { "alias": "label"; "required": false; }; "labelClass": { "alias": "labelClass"; "required": false; }; "dropdownOptionsClass": { "alias": "dropdownOptionsClass"; "required": false; }; "dropdownHeaderClass": { "alias": "dropdownHeaderClass"; "required": false; }; "dropdownContainerClass": { "alias": "dropdownContainerClass"; "required": false; }; "placeholder": { "alias": "placeholder"; "required": false; }; "enableFilter": { "alias": "enableFilter"; "required": false; }; "showClear": { "alias": "showClear"; "required": false; }; "options": { "alias": "options"; "required": true; }; "value": { "alias": "value"; "required": true; }; "height": { "alias": "height"; "required": false; }; "showSelectedCountOnly": { "alias": "showSelectedCountOnly"; "required": false; }; "reset": { "alias": "reset"; "required": false; }; }, { "valueChange": "valueChange"; "clear": "clear"; }, never, never, true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CustomMultiSelectComponent, "custom-multi-select", never, { "label": { "alias": "label"; "required": false; }; "labelClass": { "alias": "labelClass"; "required": false; }; "dropdownOptionsClass": { "alias": "dropdownOptionsClass"; "required": false; }; "dropdownHeaderClass": { "alias": "dropdownHeaderClass"; "required": false; }; "dropdownContainerClass": { "alias": "dropdownContainerClass"; "required": false; }; "placeholder": { "alias": "placeholder"; "required": false; }; "enableFilter": { "alias": "enableFilter"; "required": false; }; "showClear": { "alias": "showClear"; "required": false; }; "options": { "alias": "options"; "required": true; }; "value": { "alias": "value"; "required": true; }; "height": { "alias": "height"; "required": false; }; "showSelectedCountOnly": { "alias": "showSelectedCountOnly"; "required": false; }; "hideInput": { "alias": "hideInput"; "required": false; }; "reset": { "alias": "reset"; "required": false; }; }, { "valueChange": "valueChange"; "clear": "clear"; }, never, never, true, never>;
 }

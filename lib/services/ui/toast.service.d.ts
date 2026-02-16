@@ -1,5 +1,5 @@
 import * as i0 from "@angular/core";
-export type ToastType = 'success' | 'warning' | 'black' | 'error' | 'info';
+export type ToastType = 'success' | 'error' | 'info';
 export type ToastPosition = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top-center' | 'bottom-center';
 export interface ToastItem {
     id: string;

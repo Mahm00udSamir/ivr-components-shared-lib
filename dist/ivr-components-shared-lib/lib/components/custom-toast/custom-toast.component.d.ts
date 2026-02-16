@@ -4,6 +4,7 @@ export declare class CustomToastComponent {
     toastService: ToastService;
     positionClass: string;
     colorClass: string;
+    titleText: string;
     constructor(toastService: ToastService);
     private updatePositionClass;
     private updateColorClass;

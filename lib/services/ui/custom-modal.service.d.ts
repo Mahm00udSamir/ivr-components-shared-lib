@@ -12,6 +12,7 @@ export interface ModalOpenOptions<TInputs = unknown> {
     iconSrc?: string;
     overlayClickClose?: boolean;
     showHeader?: boolean;
+    position?: 'center' | 'start' | 'end';
 }
 export interface ModalRef<TChild> {
     modalComponentRef: ComponentRef<CustomModalComponent>;

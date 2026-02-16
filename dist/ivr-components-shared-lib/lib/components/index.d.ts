@@ -64,3 +64,5 @@ export * from './custom-multi-select-filter/custom-multi-select-filter.component
 export * from './custom-date-range/custom-date-range.component';
 export * from './custom-confidence-range/custom-confidence-range.component';
 export * from './custom-input/custom-input.component';
+export * from './custom-input-number/custom-input-number.component';
+export * from './custom-chips-multi-select/custom-chips-multi-select.component';
