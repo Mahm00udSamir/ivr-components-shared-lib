@@ -1,0 +1,52 @@
+import { EventEmitter } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { LoadingService } from '../../services';
+import * as i0 from "@angular/core";
+export type ConfirmType = 'info' | 'delete' | 'save';
+export type ConfirmResult = 'confirm' | 'cancel';
+export interface ConfirmOptions {
+    message: string;
+    modalIcon: string;
+    modalTitle: string;
+    type: ConfirmType;
+    confirmText?: string;
+    cancelText?: string;
+    extraText?: string;
+    successMsg?: string;
+    closeOnBackdrop?: boolean;
+    autoCloseMs?: number;
+}
+export declare class CustomConfirmPopupComponent {
+    private sanitizer;
+    loadingService: LoadingService;
+    message: string;
+    type: 'info' | 'delete' | 'save';
+    modalIcon: string;
+    modalTitle: string;
+    modalWarningMessage: string;
+    confirmButtonText: string;
+    cancelButtonText: string;
+    confirmEvent: EventEmitter<any>;
+    cancelEvent: EventEmitter<void>;
+    extraEvent: EventEmitter<void>;
+    overlayClicked: EventEmitter<boolean>;
+    successMsg: import("@angular/core").InputSignal<string>;
+    checkedInfoSvg: SafeHtml;
+    checkIcon: SafeHtml;
+    currentView: 'confirmation' | 'success';
+    successAnimationState: 'hidden' | 'visible';
+    successPressed: boolean;
+    isVisible: boolean;
+    eventVal: any;
+    closed: EventEmitter<void>;
+    constructor(sanitizer: DomSanitizer, loadingService: LoadingService);
+    open(event?: any): void;
+    close(): void;
+    checkSuccess(): void;
+    private transitionToSuccess;
+    onOverlayClick(event: MouseEvent): void;
+    startAnimation(event: any): void;
+    doneAnimation(event: any): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<CustomConfirmPopupComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CustomConfirmPopupComponent, "custom-confirm-popup", never, { "message": { "alias": "message"; "required": true; }; "type": { "alias": "type"; "required": true; }; "modalIcon": { "alias": "modalIcon"; "required": false; }; "modalTitle": { "alias": "modalTitle"; "required": false; }; "modalWarningMessage": { "alias": "modalWarningMessage"; "required": false; }; "confirmButtonText": { "alias": "confirmButtonText"; "required": false; }; "cancelButtonText": { "alias": "cancelButtonText"; "required": false; }; "successMsg": { "alias": "successMsg"; "required": false; "isSignal": true; }; }, { "confirmEvent": "confirmEvent"; "cancelEvent": "cancelEvent"; "extraEvent": "extraEvent"; "overlayClicked": "overlayClicked"; "closed": "closed"; }, never, never, true, never>;
+}
