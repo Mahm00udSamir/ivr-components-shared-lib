@@ -28,7 +28,6 @@ export declare class AuthService {
     getToken(): string;
     getRefreshToken(): string;
     getCurrentUser(): IUserData;
-    getUser(): IUserData;
     getCurrentPermissions(): any[];
     getCurrentRoles(): any[];
     getNormalizedRoleNames(): string[];

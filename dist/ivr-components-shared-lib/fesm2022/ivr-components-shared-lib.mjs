@@ -293,7 +293,7 @@ const SHOW_SUCCESS_TOASTER = new HttpContextToken(() => true);
 const API_BASE_URL$1 = new InjectionToken('API_BASE_URL', {
     providedIn: 'root',
     factory: () => window?.env?.authUrl ??
-        'http://10.254.192.89',
+        'http://10.254.193.186',
 });
 
 class AuthBeService {
