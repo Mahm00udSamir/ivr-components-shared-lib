@@ -290,10 +290,18 @@ const SKIP_TOKEN = new HttpContextToken(() => false);
 const SKIP_LOADER = new HttpContextToken(() => false);
 const SHOW_SUCCESS_TOASTER = new HttpContextToken(() => true);
 
+// window.env is populated by the shell (ivr-root-config) and by each app's
+// assets/env/env.js, both generated from the repo-root ivr.config.json. The
+// literals below are a last-resort backup if that never loads.
 const API_BASE_URL$1 = new InjectionToken('API_BASE_URL', {
     providedIn: 'root',
     factory: () => window?.env?.authUrl ??
         'http://10.254.193.186',
+});
+const CHAT_BASE_URL = new InjectionToken('CHAT_BASE_URL', {
+    providedIn: 'root',
+    factory: () => window?.env?.chatBaseUrl ??
+        'http://10.254.192.8',
 });
 
 class AuthBeService {
