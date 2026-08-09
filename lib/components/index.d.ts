@@ -9,6 +9,7 @@ export * from './custom-input-form/custom-input-form.component';
 export * from './custom-multi-select/custom-multi-select.component';
 export * from './custom-multi-select-filter/custom-multi-select-filter.component';
 export * from './custom-multi-select-form/custom-multi-select-form.component';
+export * from './custom-multi-select-expanded-form/custom-multi-select-expanded-form.component';
 export * from './custom-pagination/custom-pagination.component';
 export * from './custom-pop-up/custom-pop-up.component';
 export * from './custom-table/custom-table.component';

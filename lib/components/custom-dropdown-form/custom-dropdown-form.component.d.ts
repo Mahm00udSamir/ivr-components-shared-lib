@@ -1,4 +1,4 @@
-import { EventEmitter, SimpleChanges } from '@angular/core';
+import { EventEmitter, SimpleChanges, TemplateRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { IComponentFormError, IDropdownOption } from '../../interfaces';
 import { TranslationService } from '../../services';
@@ -17,12 +17,21 @@ export declare class CustomDropdownFormComponent {
     options: IDropdownOption[];
     name: string;
     validation: IComponentFormError[];
+    genericIcon: string;
     disabled: boolean;
     height: string;
     showInactive: boolean;
+    emptyOption: string;
+    borderRadius: string;
+    addOther: boolean;
+    otherControlName: string;
+    otherPlaceholder: string;
+    otherButtonText: string;
     valueChange: EventEmitter<IDropdownOption | null>;
+    otherSelected: EventEmitter<string>;
     isOpen: boolean;
     toggledDropdown: EventEmitter<boolean>;
+    optionTemplate?: TemplateRef<any>;
     selectedOption: IDropdownOption | null;
     filteredOptions: IDropdownOption[];
     filterText: string;
@@ -33,13 +42,15 @@ export declare class CustomDropdownFormComponent {
     private setupFormControlSubscription;
     private updateSelectedOptionFromFormValue;
     toggleDropdown(): void;
+    sortOptions(): void;
     closeDropdown(): void;
     writeValue(value: any): void;
     selectOption(option: IDropdownOption): void;
     clearSelection(event: Event): void;
     filterOptions(): void;
+    selectOther(): void;
     set reset(value: boolean);
     containRequiredError(): boolean;
     static ɵfac: i0.ɵɵFactoryDeclaration<CustomDropdownFormComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<CustomDropdownFormComponent, "custom-dropdown-form", never, { "parentForm": { "alias": "parentForm"; "required": true; }; "controlName": { "alias": "controlName"; "required": true; }; "label": { "alias": "label"; "required": false; }; "labelClass": { "alias": "labelClass"; "required": false; }; "dropdownOptionsClass": { "alias": "dropdownOptionsClass"; "required": false; }; "dropdownHeaderClass": { "alias": "dropdownHeaderClass"; "required": false; }; "dropdownContainerClass": { "alias": "dropdownContainerClass"; "required": false; }; "placeholder": { "alias": "placeholder"; "required": false; }; "enableFilter": { "alias": "enableFilter"; "required": false; }; "showClear": { "alias": "showClear"; "required": false; }; "options": { "alias": "options"; "required": true; }; "name": { "alias": "name"; "required": true; }; "validation": { "alias": "validation"; "required": true; }; "disabled": { "alias": "disabled"; "required": false; }; "height": { "alias": "height"; "required": false; }; "showInactive": { "alias": "showInactive"; "required": false; }; "reset": { "alias": "reset"; "required": false; }; }, { "valueChange": "valueChange"; "toggledDropdown": "toggledDropdown"; }, never, never, true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CustomDropdownFormComponent, "custom-dropdown-form", never, { "parentForm": { "alias": "parentForm"; "required": true; }; "controlName": { "alias": "controlName"; "required": true; }; "label": { "alias": "label"; "required": false; }; "labelClass": { "alias": "labelClass"; "required": false; }; "dropdownOptionsClass": { "alias": "dropdownOptionsClass"; "required": false; }; "dropdownHeaderClass": { "alias": "dropdownHeaderClass"; "required": false; }; "dropdownContainerClass": { "alias": "dropdownContainerClass"; "required": false; }; "placeholder": { "alias": "placeholder"; "required": false; }; "enableFilter": { "alias": "enableFilter"; "required": false; }; "showClear": { "alias": "showClear"; "required": false; }; "options": { "alias": "options"; "required": true; }; "name": { "alias": "name"; "required": true; }; "validation": { "alias": "validation"; "required": true; }; "genericIcon": { "alias": "genericIcon"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "height": { "alias": "height"; "required": false; }; "showInactive": { "alias": "showInactive"; "required": false; }; "emptyOption": { "alias": "emptyOption"; "required": false; }; "borderRadius": { "alias": "borderRadius"; "required": false; }; "addOther": { "alias": "addOther"; "required": false; }; "otherControlName": { "alias": "otherControlName"; "required": false; }; "otherPlaceholder": { "alias": "otherPlaceholder"; "required": false; }; "otherButtonText": { "alias": "otherButtonText"; "required": false; }; "reset": { "alias": "reset"; "required": false; }; }, { "valueChange": "valueChange"; "otherSelected": "otherSelected"; "toggledDropdown": "toggledDropdown"; }, ["optionTemplate"], never, true, never>;
 }

@@ -8,6 +8,8 @@ export interface IDropdownOption {
     latitude?: number;
     longitude?: number;
     status?: StatusType;
+    disabled?: boolean;
+    color?: string;
 }
 export interface IUserLookup {
     id: string;
