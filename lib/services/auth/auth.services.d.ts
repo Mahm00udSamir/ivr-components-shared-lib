@@ -35,6 +35,27 @@ export declare class AuthService {
     isCurrentAdmin(): boolean;
     isCurrentHelpdeskAgent(): boolean;
     isCurrentUserOrEmployee(): boolean;
+    /**
+     * The single role bucket this session acts as, resolved from the roles
+     * `savePermissionsAndRoles()` puts in local storage (`getCurrentRoles()` reads
+     * the signal first, then local storage, then the user cookie -- so this is
+     * synchronous and safe to call from a route guard on a cold refresh).
+     *
+     * The order matters: a session carrying both `admin` and an agent role gets
+     * the wider admin access, matching `getCurrentRoleLabel()` and the sidebar.
+     */
+    getCurrentAppRole(): Roles;
+    /** Home page of the current role -- see `ROLE_LANDING_ROUTE`. */
+    getRoleLandingRoute(): string;
+    /**
+     * Role check behind `RoleGuard`. A route that declares no `data.roles` is open
+     * to every signed-in role; otherwise the session's bucket must be listed.
+     *
+     * Separate from `hasCategory()` on purpose: that one answers "does this
+     * session hold one of the route's PERMISSIONS", which the backend issues per
+     * action. This one answers "is this route part of the role's menu at all".
+     */
+    hasRouteRole(route: ActivatedRouteSnapshot): boolean;
     getCurrentRoleLabel(fallback?: {
         roleName?: string;
         role?: string;

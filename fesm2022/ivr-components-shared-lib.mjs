@@ -61,6 +61,21 @@ var Roles;
     Roles["ROLE_ADMIN"] = "admin";
     Roles["ROLE_AGENT"] = "agent";
 })(Roles || (Roles = {}));
+/**
+ * Where each role is sent when it opens a route it may not see, and what an
+ * app's catch-all route resolves to. Read through
+ * `AuthService.getRoleLandingRoute()`, never indexed directly.
+ *
+ * Mirrors ivr-root-config's `getDefaultHashRoute()` (layout.services.ts) and the
+ * first item of each role's menu in ivr-sidenav's `nav-items.service.ts` -- a
+ * role lands on the page its own sidebar highlights, so the three must change
+ * together.
+ */
+const ROLE_LANDING_ROUTE = {
+    [Roles.ROLE_ADMIN]: '/admin-dashboard/executive',
+    [Roles.ROLE_AGENT]: '/admin-dashboard/operations',
+    [Roles.ROLE_USER]: '/conversation/user',
+};
 var PERMISSIONS;
 (function (PERMISSIONS) {
     PERMISSIONS["all"] = "all";
@@ -684,6 +699,43 @@ class AuthService {
             name === 'user' ||
             name === 'employee' ||
             name === 'role_employee');
+    }
+    /**
+     * The single role bucket this session acts as, resolved from the roles
+     * `savePermissionsAndRoles()` puts in local storage (`getCurrentRoles()` reads
+     * the signal first, then local storage, then the user cookie -- so this is
+     * synchronous and safe to call from a route guard on a cold refresh).
+     *
+     * The order matters: a session carrying both `admin` and an agent role gets
+     * the wider admin access, matching `getCurrentRoleLabel()` and the sidebar.
+     */
+    getCurrentAppRole() {
+        if (this.isCurrentAdmin()) {
+            return Roles.ROLE_ADMIN;
+        }
+        if (this.isCurrentHelpdeskAgent()) {
+            return Roles.ROLE_AGENT;
+        }
+        return Roles.ROLE_USER;
+    }
+    /** Home page of the current role -- see `ROLE_LANDING_ROUTE`. */
+    getRoleLandingRoute() {
+        return ROLE_LANDING_ROUTE[this.getCurrentAppRole()];
+    }
+    /**
+     * Role check behind `RoleGuard`. A route that declares no `data.roles` is open
+     * to every signed-in role; otherwise the session's bucket must be listed.
+     *
+     * Separate from `hasCategory()` on purpose: that one answers "does this
+     * session hold one of the route's PERMISSIONS", which the backend issues per
+     * action. This one answers "is this route part of the role's menu at all".
+     */
+    hasRouteRole(route) {
+        const allowedRoles = (route.data['roles'] ?? []);
+        if (!allowedRoles.length) {
+            return true;
+        }
+        return allowedRoles.includes(this.getCurrentAppRole());
     }
     getCurrentRoleLabel(fallback) {
         if (this.isCurrentAdmin())
@@ -9744,9 +9796,12 @@ const NetworkConnectionInterceptor = (req, next) => {
     }));
 };
 
+/**
+ * Is anyone signed in? Put it first in `canActivate`, ahead of `RoleGuard` --
+ * asking which role a session has is only meaningful once there is a session.
+ */
 const authGuard = () => {
     const platformId = inject(PLATFORM_ID);
-    const router = inject(Router);
     const authService = inject(AuthService);
     if (!isPlatformBrowser(platformId)) {
         return false;
@@ -9754,10 +9809,18 @@ const authGuard = () => {
     if (authService.isLoggedIn()) {
         return true;
     }
-    else {
-        router.navigateByUrl('/auth');
-        return false;
+    // Sign-in is @IVR/registration, mounted by ivr-root-config's auth layout --
+    // it is not a route in the micro-frontend this guard runs in. Navigating the
+    // app's own router to '/auth' therefore falls through to its `**` route,
+    // which redirects back into a guarded page and bounces forever. Hand the
+    // whole shell over instead: the reload re-runs `getLayout()`, which swaps the
+    // modules layout for the auth one.
+    const authHash = `#/${ModuleRoutes.AUTH}`;
+    if (window.location.hash !== authHash) {
+        window.location.hash = `/${ModuleRoutes.AUTH}`;
+        window.location.reload();
     }
+    return false;
 };
 
 const noAuthGuard = () => {
@@ -9795,11 +9858,43 @@ const PermissionGuard = (route, state) => {
     }
 };
 
+/**
+ * Route-level role check. Pair it with `authGuard`, which answers the earlier
+ * question of whether anyone is signed in at all:
+ *
+ *   canActivate: [authGuard, RoleGuard],
+ *   data: { roles: [Roles.ROLE_ADMIN, Roles.ROLE_AGENT] }
+ *
+ * A route with no `data.roles` passes for every signed-in role. Roles come from
+ * `AuthService.getCurrentAppRole()`, so they are read out of local storage and
+ * the check is synchronous -- a deep link on a cold refresh resolves without
+ * waiting on `handlePermissionConfig()`.
+ *
+ * Denial redirects to the role's own landing page (`ROLE_LANDING_ROUTE`) rather
+ * than returning false: a blocked deep link should leave the user somewhere
+ * their sidebar actually points at, not on a blank outlet.
+ *
+ * Use `PermissionGuard` instead when the backend issues per-action PERMISSIONS
+ * for the page; the two answer different questions and can be stacked.
+ */
+const RoleGuard = (route) => {
+    const authService = inject(AuthService);
+    const router = inject(Router);
+    const toastService = inject(ToastService);
+    if (authService.hasRouteRole(route)) {
+        return true;
+    }
+    setTimeout(() => {
+        toastService.toast(`You don't have permission`, 'top-center', 'error', 2000);
+    }, 500);
+    return router.parseUrl(authService.getRoleLandingRoute());
+};
+
 // Global styles - import this in your app's main styles file or import it once in app.config
 
 /**
  * Generated bundle index. Do not edit.
  */
 
-export { API_BASE_URL, ActivityTimePipe, AllowNumberOnlyDirective, ArabicOnlyDirective, AuthBeService, AuthConstant, AuthContextService, AuthDirective, AuthInterceptor, AuthService, BlurBackdropDirective, ClickOutsideDirective, CommonHttpService, ComponentFormErrorConstant, ConfirmDialogService, CustomActionsDropdownComponent, CustomAppErrorComponent, CustomAvatarsComponent, CustomBreadcrumbComponent, CustomButtonComponent, CustomCalendarComponent, CustomCalenderFormComponent, CustomCategoryTableComponent, CustomCheckBoxFormComponent, CustomChipsMultiSelectComponent, CustomColorComponent, CustomConfidenceRangeComponent, CustomConfirmPopupComponent, CustomCounterInputComponent, CustomDateRangeComponent, CustomDetailsHeaderComponent, CustomDetailsModalComponent, CustomDetailsNavComponent, CustomDropdownButtonComponent, CustomDropdownComponent, CustomDropdownFormComponent, CustomDynamicTableWithCategoriesComponent, CustomFieldsFormComponent, CustomFileUploadComponent, CustomFileViewerComponent, CustomFilterDropdownComponent, CustomFilterDynamicFormComponent, CustomInputComponent, CustomInputFormComponent, CustomInputNumberComponent, CustomLoadingSpinnerComponent, CustomMainPagesFilterComponent, CustomModalComponent, CustomModalService, CustomMultiSelectComponent, CustomMultiSelectExpandedFormComponent, CustomMultiSelectFilterComponent, CustomMultiSelectFormComponent, CustomOtpInputFormComponent, CustomPagesHeaderComponent, CustomPaginationComponent, CustomPhoneFormComponent, CustomPillTabsComponent, CustomPlateNumberInputFormComponent, CustomPopUpComponent, CustomProfileImgInputComponent, CustomProgressBarComponent, CustomRadioComponentComponent, CustomRadioGroupFormComponent, CustomReactiveSearchInputComponent, CustomSearchInputComponent, CustomSmDynamicTableComponent, CustomSmpFileUploadComponent, CustomStatusLabelComponent, CustomSteppersContainerComponent, CustomSteppersControllersComponent, CustomSvgIconComponent, CustomTableComponent, CustomTabsComponent, CustomTextareaComponent, CustomTextareaFormComponent, CustomTimeInputFormComponent, CustomTitleContentComponent, CustomToastComponent, CustomToastViewportComponent, CustomToggleSwitchComponent, CustomToggleSwitchFormComponent, CustomTooltipComponent, DropdownsAnimationDirective, EnglishOnlyDirective, ErrorInterceptor, GeoLocationService, I18nConstant, Lang, LoadingService, LocalizePipe, MODAL_REF, ModuleRoutes, NetworkConnectionInterceptor, OverlayPanelComponent, PERMISSIONS, PermissionGuard, Roles, SHOW_SUCCESS_TOASTER, SKIP_LOADER, SKIP_TOKEN, SidenavService, StepperService, StorageService, ToastService, ToggleElementDirective, TranslationService, USE_TOKEN, UserDataService, UserStatus, authGuard, b64toBlob, blobToB64, convertDateFormat, convertFileToBase64, convertFormGroupToFormData, diffTime, downloadBlob, dropdownAnimation, excelDateToJSDate, flattenTree, formatDate, formatDateWithTime, formatTimestamp, formatinitialTakeTime, generateRandomColor, generateUniqueNumber, getFormValidationErrors, injectModalRef, isDocumentPath, isImagePath, isVedioPath, loadingInterceptor, logger, noAuthGuard, someFieldsContainData, timeAgo };
+export { API_BASE_URL, ActivityTimePipe, AllowNumberOnlyDirective, ArabicOnlyDirective, AuthBeService, AuthConstant, AuthContextService, AuthDirective, AuthInterceptor, AuthService, BlurBackdropDirective, ClickOutsideDirective, CommonHttpService, ComponentFormErrorConstant, ConfirmDialogService, CustomActionsDropdownComponent, CustomAppErrorComponent, CustomAvatarsComponent, CustomBreadcrumbComponent, CustomButtonComponent, CustomCalendarComponent, CustomCalenderFormComponent, CustomCategoryTableComponent, CustomCheckBoxFormComponent, CustomChipsMultiSelectComponent, CustomColorComponent, CustomConfidenceRangeComponent, CustomConfirmPopupComponent, CustomCounterInputComponent, CustomDateRangeComponent, CustomDetailsHeaderComponent, CustomDetailsModalComponent, CustomDetailsNavComponent, CustomDropdownButtonComponent, CustomDropdownComponent, CustomDropdownFormComponent, CustomDynamicTableWithCategoriesComponent, CustomFieldsFormComponent, CustomFileUploadComponent, CustomFileViewerComponent, CustomFilterDropdownComponent, CustomFilterDynamicFormComponent, CustomInputComponent, CustomInputFormComponent, CustomInputNumberComponent, CustomLoadingSpinnerComponent, CustomMainPagesFilterComponent, CustomModalComponent, CustomModalService, CustomMultiSelectComponent, CustomMultiSelectExpandedFormComponent, CustomMultiSelectFilterComponent, CustomMultiSelectFormComponent, CustomOtpInputFormComponent, CustomPagesHeaderComponent, CustomPaginationComponent, CustomPhoneFormComponent, CustomPillTabsComponent, CustomPlateNumberInputFormComponent, CustomPopUpComponent, CustomProfileImgInputComponent, CustomProgressBarComponent, CustomRadioComponentComponent, CustomRadioGroupFormComponent, CustomReactiveSearchInputComponent, CustomSearchInputComponent, CustomSmDynamicTableComponent, CustomSmpFileUploadComponent, CustomStatusLabelComponent, CustomSteppersContainerComponent, CustomSteppersControllersComponent, CustomSvgIconComponent, CustomTableComponent, CustomTabsComponent, CustomTextareaComponent, CustomTextareaFormComponent, CustomTimeInputFormComponent, CustomTitleContentComponent, CustomToastComponent, CustomToastViewportComponent, CustomToggleSwitchComponent, CustomToggleSwitchFormComponent, CustomTooltipComponent, DropdownsAnimationDirective, EnglishOnlyDirective, ErrorInterceptor, GeoLocationService, I18nConstant, Lang, LoadingService, LocalizePipe, MODAL_REF, ModuleRoutes, NetworkConnectionInterceptor, OverlayPanelComponent, PERMISSIONS, PermissionGuard, ROLE_LANDING_ROUTE, RoleGuard, Roles, SHOW_SUCCESS_TOASTER, SKIP_LOADER, SKIP_TOKEN, SidenavService, StepperService, StorageService, ToastService, ToggleElementDirective, TranslationService, USE_TOKEN, UserDataService, UserStatus, authGuard, b64toBlob, blobToB64, convertDateFormat, convertFileToBase64, convertFormGroupToFormData, diffTime, downloadBlob, dropdownAnimation, excelDateToJSDate, flattenTree, formatDate, formatDateWithTime, formatTimestamp, formatinitialTakeTime, generateRandomColor, generateUniqueNumber, getFormValidationErrors, injectModalRef, isDocumentPath, isImagePath, isVedioPath, loadingInterceptor, logger, noAuthGuard, someFieldsContainData, timeAgo };
 //# sourceMappingURL=ivr-components-shared-lib.mjs.map
