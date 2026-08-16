@@ -74,7 +74,7 @@ var Roles;
 const ROLE_LANDING_ROUTE = {
     [Roles.ROLE_ADMIN]: '/admin-dashboard/executive',
     [Roles.ROLE_AGENT]: '/admin-dashboard/operations',
-    [Roles.ROLE_USER]: '/conversation/user',
+    [Roles.ROLE_USER]: '/conversation/me',
 };
 var PERMISSIONS;
 (function (PERMISSIONS) {
