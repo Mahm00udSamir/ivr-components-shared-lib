@@ -3358,7 +3358,7 @@ class CustomPaginationComponent {
         // }
     }
     prevPage() {
-        if (this.page > 1) {
+        if (this.page > 0) {
             this.page--;
             this.calculateTotalPages(); // 🟢 recalculate visible range
             this.pageChange.emit({ page: this.page, pageSize: this.pageSize });
@@ -3366,7 +3366,7 @@ class CustomPaginationComponent {
     }
     nextPage() {
         const pageCount = Math.ceil(this.totalCount / this.pageSize);
-        if (this.page < pageCount) {
+        if (this.page < pageCount - 1) {
             this.page++;
             this.calculateTotalPages(); // 🟢 update
             this.pageChange.emit({ page: this.page, pageSize: this.pageSize });
@@ -3378,16 +3378,16 @@ class CustomPaginationComponent {
         this.pageChange.emit({ page: this.page, pageSize: this.pageSize });
     }
     firstPage() {
-        if (this.page > 1) {
-            this.page = 1;
+        if (this.page > 0) {
+            this.page = 0;
             this.calculateTotalPages();
             this.pageChange.emit({ page: this.page, pageSize: this.pageSize });
         }
     }
     lastPage() {
         const pageCount = Math.ceil(this.totalCount / this.pageSize);
-        if (this.page < pageCount) {
-            this.page = pageCount;
+        if (this.page < pageCount - 1) {
+            this.page = pageCount - 1;
             this.calculateTotalPages();
             this.pageChange.emit({ page: this.page, pageSize: this.pageSize });
         }
