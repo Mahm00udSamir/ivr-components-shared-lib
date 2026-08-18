@@ -310,13 +310,11 @@ const SHOW_SUCCESS_TOASTER = new HttpContextToken(() => true);
 // literals below are a last-resort backup if that never loads.
 const API_BASE_URL$1 = new InjectionToken('API_BASE_URL', {
     providedIn: 'root',
-    factory: () => window?.env?.authUrl ??
-        'http://10.254.192.151',
+    factory: () => window?.env?.authUrl ?? 'http://10.254.192.151',
 });
 const CHAT_BASE_URL = new InjectionToken('CHAT_BASE_URL', {
     providedIn: 'root',
-    factory: () => window?.env?.chatBaseUrl ??
-        'http://10.254.192.8',
+    factory: () => window?.env?.chatBaseUrl ?? 'http://10.254.192.8',
 });
 
 class AuthBeService {
