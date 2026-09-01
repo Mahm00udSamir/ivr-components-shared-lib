@@ -21,6 +21,17 @@ export declare class CustomActionsDropdownComponent {
     injectedTrigger: boolean;
     expandSide: 'RIGHT' | 'LEFT';
     expandDirection: 'TOP' | 'BOTTOM';
+    /**
+     * Extra class applied to the popup panel. Needed because openDropdown()
+     * portals the panel to document.body, detaching it from the host
+     * component's DOM subtree -- so a *consumer's* `:host ::ng-deep
+     * .dropdown-menu` rule stops matching the moment the dropdown opens
+     * (Angular's emulated encapsulation for ::ng-deep relies on actual DOM
+     * ancestry, not template ancestry). Consumers that need to style the
+     * popup should pass a globally-scoped class here and put the matching
+     * rules in a global stylesheet instead.
+     */
+    popupClass: string;
     actionsPopup?: ElementRef<HTMLDivElement>;
     triggerWrapper?: ElementRef<HTMLDivElement>;
     actionDropdownContainer?: ElementRef<HTMLDivElement>;
@@ -42,5 +53,5 @@ export declare class CustomActionsDropdownComponent {
     }, event: MouseEvent): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<CustomActionsDropdownComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<CustomActionsDropdownComponent, "custom-actions-dropdown", never, { "actions": { "alias": "actions"; "required": false; }; "context": { "alias": "context"; "required": false; }; "horizontalDots": { "alias": "horizontalDots"; "required": false; }; "hasActionTemplate": { "alias": "hasActionTemplate"; "required": false; }; "injectedTrigger": { "alias": "injectedTrigger"; "required": false; }; "expandSide": { "alias": "expandSide"; "required": false; }; "expandDirection": { "alias": "expandDirection"; "required": false; }; }, {}, ["triggerTemplate"], ["*"], true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CustomActionsDropdownComponent, "custom-actions-dropdown", never, { "actions": { "alias": "actions"; "required": false; }; "context": { "alias": "context"; "required": false; }; "horizontalDots": { "alias": "horizontalDots"; "required": false; }; "hasActionTemplate": { "alias": "hasActionTemplate"; "required": false; }; "injectedTrigger": { "alias": "injectedTrigger"; "required": false; }; "expandSide": { "alias": "expandSide"; "required": false; }; "expandDirection": { "alias": "expandDirection"; "required": false; }; "popupClass": { "alias": "popupClass"; "required": false; }; }, {}, ["triggerTemplate"], ["*"], true, never>;
 }

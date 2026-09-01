@@ -1,6 +1,6 @@
 {
   "name": "ivr-components-shared-lib",
-  "version": "1.1.0",
+  "version": "0.0.0-watch+1788243803545",
   "peerDependencies": {
     "@angular/common": "^19.2.0",
     "@angular/core": "^19.2.0",

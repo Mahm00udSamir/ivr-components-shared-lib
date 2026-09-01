@@ -23,6 +23,7 @@ export declare class CustomPaginationComponent {
     generatePageSizeOptions(): void;
     prevPage(): void;
     nextPage(): void;
+    isLastPage(): boolean;
     changePage(index: number): void;
     firstPage(): void;
     lastPage(): void;
