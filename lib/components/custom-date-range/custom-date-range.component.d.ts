@@ -14,6 +14,7 @@ export declare class CustomDateRangeComponent {
     startDate: Date | null;
     endDate: Date | null;
     label: string;
+    maxDate: Date | null;
     startDateChange: EventEmitter<Date | null>;
     endDateChange: EventEmitter<Date | null>;
     /** Emitted when Add is pressed. The panel closes straight after. */
@@ -27,5 +28,5 @@ export declare class CustomDateRangeComponent {
     onApply(): void;
     close(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<CustomDateRangeComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<CustomDateRangeComponent, "custom-date-range", never, { "startDate": { "alias": "startDate"; "required": false; }; "endDate": { "alias": "endDate"; "required": false; }; "label": { "alias": "label"; "required": false; }; }, { "startDateChange": "startDateChange"; "endDateChange": "endDateChange"; "apply": "apply"; }, never, never, true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CustomDateRangeComponent, "custom-date-range", never, { "startDate": { "alias": "startDate"; "required": false; }; "endDate": { "alias": "endDate"; "required": false; }; "label": { "alias": "label"; "required": false; }; "maxDate": { "alias": "maxDate"; "required": false; }; }, { "startDateChange": "startDateChange"; "endDateChange": "endDateChange"; "apply": "apply"; }, never, never, true, never>;
 }
