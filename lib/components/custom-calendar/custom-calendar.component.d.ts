@@ -35,11 +35,15 @@ export declare class CustomCalendarComponent {
     selectDate(date: Date): void;
     prevMonth(): void;
     nextMonth(): void;
+    /** False once the grid has reached the month that holds maxDate. */
+    canGoNext(): boolean;
     generateCalendar(): void;
     isSelected(date: Date): boolean;
     isCurrentMonth(date: Date): boolean;
     isInRange(date: Date): boolean;
     isDisabled(date: Date): boolean;
+    /** Midnight-of-day timestamp, so comparisons ignore any wall-clock time. */
+    private toDayStart;
     getMonthName(): string;
     getYear(): number;
     formatDisplayDate(): string;
