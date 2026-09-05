@@ -1,0 +1,415 @@
+/* ==========================================================================
+   IVR semantic token mappings.
+
+   This file holds ONLY var() aliases: every declaration maps a semantic name
+   onto a palette primitive from variables_light.css. No raw hex, rgb triplet
+   or shadow belongs here — a literal value lives in variables_light.css with a
+   matching line in variables_dark.css.
+
+   The feedback/status families (Status / Alerts, the alert/success/info/
+   warning semantic roles, and the critical/warning/success/info chip accents)
+   resolve onto --ivr-agentic-* instead of the Red/Green/Yellow/Blue accent
+   scales. That scale is theme-invariant by design (Figma lists the same hex
+   for light and dark), so those tokens deliberately do NOT invert with the
+   theme toggle -- everything else in this file still does.
+
+   Load order (src/style.css): variables_light -> variables_dark -> ivr_tokens.
+   Aliases below sit on bare :root (0,1,0); variables_dark.css overrides on
+   :root[data-theme="dark"] (0,2,0), so a dark literal still wins on
+   specificity and every alias here follows the active theme automatically.
+   ========================================================================== */
+:root {
+  /* ==========================================================================
+     Brand
+  ========================================================================== */
+  --ivr-color-primary: var(--ivr-primary-normal); /* #602650 */
+  --ivr-color-primary-hover: var(--ivr-primary-normal-hover); /* #562248 */
+  --ivr-color-primary-active: var(--ivr-primary-normal-active); /* #4D1E40 */
+  --ivr-color-primary-weak: var(--ivr-primary-light); /* #EFE9EE */
+  --ivr-color-secondary: var(--ivr-secondary-normal); /* #25C7BC */
+
+  /* ==========================================================================
+     Text
+  ========================================================================== */
+  --ivr-text-primary: var(--ivr-color-black); /* #121214 */
+  --ivr-text-secondary: var(--ivr-neutral-light-active); /* #9DA4AE */
+  --ivr-text-sub-title: var(--ivr-neutral-normal-hover); /* #4d5761 */
+  --ivr-text-muted: var(--ivr-neutral-normal); /* #6C727E */
+  --ivr-text-disabled: var(--ivr-neutral-light-active); /* #9DA4AE */
+  --ivr-text-inverse: var(--ivr-color-white); /* #FFFFFF */
+  --ivr-text-link: var(--ivr-primary-normal); /* #602650 */
+
+  /* ==========================================================================
+     Background
+  ========================================================================== */
+  --ivr-bg-page: var(--ivr-neutral-lightest-active); /* #F3F4F6 */
+  --ivr-bg-surface: var(--ivr-color-white); /* #FFFFFF */
+  --ivr-bg-surface-hover: var(--ivr-neutral-lightest-hover); /* #EEEEEE */
+  --ivr-bg-surface-active: var(--ivr-neutral-lightest-active); /* #F3F4F6 */
+  --ivr-bg-muted: var(--ivr-neutral-light); /* #E5E7EB */
+  --ivr-bg-overlay: rgba(var(--ivr-alpha-black-rgb), 0.4); /* #16161666 */
+
+  /* ==========================================================================
+     Border
+  ========================================================================== */
+  --ivr-border-default: var(--ivr-neutral-light-hover); /* #d2d6db */
+  --ivr-line-border-color: var(--ivr-neutral-light); /* #E5E7EB */
+  --ivr-border-strong: var(--ivr-neutral-light-active); /* #9DA4AE */
+  /* Darker than -strong: the Figma header assignee-button outline. NOT
+     --ivr-text-muted, which is identical here but re-points to a lighter text
+     grey (#a4adba) in variables_dark.css. */
+  --ivr-border-muted: var(--ivr-neutral-normal); /* #6c737f */
+  --ivr-border-focus: var(--ivr-primary-normal); /* #602650 */
+  --ivr-border-error: var(--ivr-red-normal-active); /* #B42318 */
+  --ivr-border-success: var(--ivr-green-normal); /* #17B169 */
+
+  /* ==========================================================================
+     Forms — Figma SP inputs (light 405:16886 / dark 440:19549)
+  ========================================================================== */
+  --ivr-color-form-label: var(--ivr-text-primary);
+  --ivr-form-text: var(--ivr-text-primary);
+  --ivr-color-form-placeholder: var(
+    --ivr-neutral-normal
+  ); /* light #6C727E / dark #7F858F */
+  --ivr-form-bg: var(--ivr-bg-surface);
+  --ivr-form-bg-disabled: var(
+    --ivr-neutral-lightest-active
+  ); /* #F3F4F6 / dark #18181B */
+  --ivr-color-form-border: var(
+    --ivr-neutral-light-hover
+  ); /* light #D2D6DB / dark #34393F */
+  --ivr-form-border-hover: var(--ivr-neutral-light-active);
+  --ivr-form-border-focus: var(--ivr-border-focus);
+  --ivr-form-border-error: var(--ivr-red-normal);
+  --ivr-form-required: var(--ivr-red-normal); /* #F04438 */
+  --ivr-form-error-text: var(--ivr-red-normal-active);
+  --ivr-form-helper-text: var(--ivr-text-muted);
+  --ivr-color-form-checkbox-label: var(
+    --ivr-neutral-normal-hover
+  ); /* #4D5761 */
+  --ivr-color-text-disabled: var(--ivr-neutral-normal-hover); /* #4D5761 */
+
+  /* ==========================================================================
+     Status / Alerts — resolves onto the theme-invariant agentic scale (see
+     file header). --ivr-warning-bg is the one exception: the agentic
+     "Warning 50" row is #E76161, a red, so it can't serve as a warning tint --
+     kept on the yellow scale instead (it also has no call sites today).
+  ========================================================================== */
+  --ivr-success: var(--ivr-agentic-success-500); /* #19AA19 */
+  --ivr-success-bg: var(--ivr-agentic-success-50); /* #E9FCE9 */
+  --ivr-success-border: var(--ivr-agentic-success-200); /* #A6F2A6 */
+
+  --ivr-error: var(--ivr-agentic-error-500); /* #B90E17 */
+  --ivr-error-bg: var(--ivr-agentic-error-100); /* #FBD0D2 */
+  --ivr-error-border: var(--ivr-agentic-error-50); /* #E76161 */
+
+  --ivr-warning: var(--ivr-agentic-warning-100); /* #FF9500 */
+  --ivr-warning-bg: var(--ivr-yellow-lightest-active); /* #FEF0C7 */
+  --ivr-warning-border: var(--ivr-agentic-warning-200); /* #FF4747 */
+
+  --ivr-info: var(--ivr-agentic-information-500); /* #007BFF */
+  --ivr-info-bg: var(--ivr-agentic-information-50); /* #E5F2FF */
+  --ivr-info-border: var(--ivr-agentic-information-100); /* #CCE5FF */
+
+  /* ==========================================================================
+     Buttons
+  ========================================================================== */
+  --ivr-button-primary-bg: var(--ivr-color-primary);
+  --ivr-button-primary-bg-hover: var(--ivr-color-primary-hover);
+  --ivr-button-primary-bg-active: var(--ivr-color-primary-active);
+  --ivr-button-primary-text: var(--ivr-text-inverse);
+
+  --ivr-button-secondary-bg: var(--ivr-color-secondary);
+  --ivr-button-secondary-text: var(--ivr-text-inverse);
+
+  --ivr-button-disabled-bg: var(--ivr-neutral-light); /* #E5E7EB */
+  --ivr-button-disabled-text: var(--ivr-text-disabled);
+
+  /* ==========================================================================
+     Tables
+  ========================================================================== */
+  --ivr-table-header-bg: var(--ivr-neutral-lightest-active); /* #F3F4F6 */
+  --ivr-table-header-text: var(--ivr-text-secondary);
+  --ivr-table-row-bg: var(--ivr-bg-surface);
+  --ivr-table-row-hover-bg: var(--ivr-neutral-lightest-hover); /* #EEEEEE */
+  --ivr-table-border: var(--ivr-border-default);
+
+  /* ==========================================================================
+     Layered surfaces — Figma IVR Redesign, dark node 645:175613.
+
+     Light: every layer collapses onto white / the existing subtle grey, so
+     nothing changes. variables_dark.css stacks them — card #18181b behind
+     shell #191919 behind raised rows / toolbar #272727 — which is what gives
+     the dark table its depth.
+  ========================================================================== */
+  --ivr-surface-card: var(--ivr-color-white);
+  --ivr-surface-sunken: var(--ivr-color-white);
+  --ivr-surface-raised: var(--ivr-color-white);
+  --ivr-surface-raised-hover: var(--ivr-neutral-lightest-hover);
+  --ivr-surface-subtle: var(--ivr-neutral-lightest-active);
+  --ivr-surface-border: var(--ivr-neutral-lightest-hover);
+
+  /* ==========================================================================
+     Cards / Dialogs
+  ========================================================================== */
+  --ivr-card-bg: var(--ivr-bg-surface);
+  --ivr-card-border: var(--ivr-border-default);
+  --ivr-dialog-bg: var(--ivr-bg-surface);
+  --ivr-dialog-overlay-bg: var(--ivr-bg-overlay);
+  /* ==========================================================================
+     Spinner
+  ========================================================================== */
+  --ivr-spinner-bg: var(--ivr-bg-surface);
+  --ivr-spinner-color: var(--ivr-color-secondary);
+
+  /* ==========================================================================
+     Semantic colour roles
+  ========================================================================== */
+  --ivr-color-alert: var(--ivr-agentic-error-500);
+  --ivr-color-required: var(--ivr-agentic-error-500);
+  --ivr-color-success: var(--ivr-agentic-success-500);
+  --ivr-color-info: var(--ivr-agentic-information-500);
+  --ivr-color-warning: var(--ivr-agentic-warning-100);
+  --ivr-link-color: var(--ivr-primary-normal);
+  --ivr-title: var(--ivr-color-black);
+  --ivr-color-form-error: var(--ivr-red-normal);
+  --ivr-color-form-error-shadow: rgb(var(--ivr-red-normal-rgb), 0.15);
+  --ivr-color-sidebar-hover-text: var(--ivr-secondary-normal);
+
+  /* ==========================================================================
+     Alpha aliases
+
+     Each maps onto a palette primitive that is already the intended value in
+     both themes, so one alias replaces a light+dark literal pair. Exceptions
+     kept as literals in the theme files: --ivr-alpha-black(+rgb),
+     --ivr-alpha-white-rgb, --ivr-alpha-white (dark #1a1a1a is not a primitive),
+     and --ivr-alpha-yellow/green-*-rgb (light's sibling *-hover-rgb primitives
+     do not match their own hex — see variables_light.css).
+  ========================================================================== */
+  --ivr-alpha-white: var(
+    --ivr-color-white
+  ); /* dark keeps its #1a1a1a override */
+  --ivr-alpha-primary: var(--ivr-primary-normal);
+  --ivr-alpha-primary-rgb: var(--ivr-primary-normal-rgb);
+
+  --ivr-alpha-yellow-10: var(--ivr-yellow-normal-hover);
+  --ivr-alpha-yellow-20: var(--ivr-yellow-normal-hover);
+  --ivr-alpha-red-10: var(--ivr-red-normal-hover);
+  --ivr-alpha-red-20: var(--ivr-red-normal-hover);
+  --ivr-alpha-blue-10: var(--ivr-blue-normal-hover);
+  --ivr-alpha-blue-20: var(--ivr-blue-normal-hover);
+  --ivr-alpha-green-10: var(--ivr-green-normal-hover);
+  --ivr-alpha-green-20: var(--ivr-green-normal-hover);
+
+  --ivr-alpha-red-10-rgb: var(--ivr-red-normal-hover-rgb);
+  --ivr-alpha-red-20-rgb: var(--ivr-red-normal-hover-rgb);
+  --ivr-alpha-blue-10-rgb: var(--ivr-blue-normal-hover-rgb);
+  --ivr-alpha-blue-20-rgb: var(--ivr-blue-normal-hover-rgb);
+
+  /* ==========================================================================
+     Auth / login — Figma: IVR Redesign, node 540:21097 (light) / 540:20627
+     (dark). Supersedes the previous login layout (nodes 574:93749/575:93999).
+
+     Aliases here resolve correctly in both themes because --ivr-color-black,
+     --ivr-color-white, --ivr-neutral-normal, --ivr-neutral-light(-hover),
+     --ivr-secondary-* already flip per theme file. Values that do NOT follow
+     that generic inversion — the fixed teal info card, white-on-teal button
+     text, the badge dot, the two glass-card surfaces — are literal pairs in
+     variables_light.css / variables_dark.css instead (see the block there for
+     which alias each override replaces).
+  ========================================================================== */
+  --ivr-auth-chip-bg: var(--ivr-color-white);
+  --ivr-auth-chip-text: var(--ivr-secondary-normal);
+  --ivr-auth-info-outer-bg: var(--ivr-color-white);
+  --ivr-auth-form-card-bg: var(--ivr-color-white);
+  --ivr-auth-input-bg: var(--ivr-color-white);
+  --ivr-auth-feature-bg: var(--ivr-color-white);
+  --ivr-auth-heading-text: var(--ivr-color-black);
+  --ivr-auth-input-label: var(--ivr-color-black);
+  --ivr-auth-hero-heading: var(--ivr-color-black);
+  --ivr-auth-feature-text: var(--ivr-color-black);
+  --ivr-auth-subtitle-text: var(--ivr-neutral-normal);
+  --ivr-auth-hero-desc: var(--ivr-neutral-normal);
+  --ivr-auth-input-border: var(--ivr-neutral-light-hover);
+  --ivr-auth-input-placeholder: var(--ivr-neutral-light-hover);
+  --ivr-auth-divider: var(--ivr-neutral-light);
+  --ivr-auth-badge-bg: var(--ivr-secondary-light);
+  --ivr-auth-badge-border: var(--ivr-secondary-normal);
+  --ivr-auth-badge-text: var(--ivr-secondary-normal);
+  --ivr-auth-button-bg: var(--ivr-secondary-normal);
+  --ivr-auth-feature-shadow: var(--ivr-shadow-sm);
+  --ivr-auth-logo-primary: var(--ivr-primary-normal);
+  --ivr-auth-logo-secondary: var(--ivr-secondary-normal);
+
+  /* ==================== CHIP / BADGE ACCENTS ==================== */
+  --ivr-chip-critical: var(--ivr-agentic-error-500);
+  --ivr-chip-warning: var(--ivr-agentic-warning-100);
+  --ivr-chip-success: var(--ivr-agentic-success-500);
+  --ivr-chip-info: var(--ivr-agentic-information-500);
+  --ivr-chip-neutral: var(--ivr-neutral-normal);
+  --ivr-badge-vip: var(--ivr-gold-normal);
+  --ivr-badge-text-on-accent: var(--ivr-color-white);
+
+  /* ==================== CONVERSATION LIST CARD CHIPS ====================
+     Figma: IVR Redesign, "ALL CONVERSATIONS" card (node 691:71193 dark /
+     185:33279 light) -- the "Resolved By AI/Support" and "Ticket: {id}" pills
+     under each list row. Light-theme values alias onto existing primitives;
+     dark-theme literal overrides live in variables_dark.css because they
+     deliberately reuse the LIGHT palette's own dark-end steps (#053321 /
+     #dcfae6, #102a56 / #f5faff) rather than the generic per-theme inversion --
+     same "no clean scale primitive matches both" situation as
+     --ivr-conv-panel-accent-button. */
+  --ivr-chip-resolved-bg: var(--ivr-green-lightest-hover); /* #ecfdf3 */
+  --ivr-chip-resolved-fg: var(--ivr-green-normal); /* #17b26a */
+  --ivr-chip-ticket-bg: var(--ivr-blue-lightest-hover); /* #eff8ff */
+  --ivr-chip-ticket-fg: var(--ivr-blue-normal); /* #2e90fa */
+
+  /* ==========================================================================
+     Conversation status badges — Figma: "Conv Status" set (node 381:14673).
+
+     Light-theme values only: each maps onto a palette scale from
+     variables_light.css. variables_dark.css keeps a literal block for this set
+     on :root[data-theme="dark"] (0,2,0), which outranks these bare-:root aliases
+     (0,1,0), so dark still wins on specificity -- same pattern as --ivr-text-*.
+     -bg/-fg are the tinted badge/chip and dropdown-item colours; -solid-bg/-fg
+     are the solid trigger button (white on the status accent).
+
+     assigned-fg / assigned-solid-bg (was #007aff) and resolved-fg (was #008236)
+     were off-palette hex, snapped here to the nearest scale step.
+  ========================================================================== */
+  --ivr-status-open-bg: var(--ivr-primary-light); /* #efe9ee */
+  --ivr-status-open-fg: var(--ivr-primary-normal); /* #602650 */
+  --ivr-status-open-solid-bg: var(--ivr-primary-normal); /* #602650 */
+  --ivr-status-open-solid-fg: var(--ivr-color-white); /* #ffffff */
+
+  --ivr-status-assigned-bg: var(--ivr-blue-lightest); /* #f5faff */
+  --ivr-status-assigned-fg: var(
+    --ivr-blue-normal-hover
+  ); /* #1570ef (was #007aff) */
+  --ivr-status-assigned-solid-bg: var(
+    --ivr-blue-normal-hover
+  ); /* #1570ef (was #007aff) */
+  --ivr-status-assigned-solid-fg: var(--ivr-color-white); /* #ffffff */
+
+  --ivr-status-abandoned-bg: var(--ivr-neutral-lightest-active); /* #f3f4f6 */
+  --ivr-status-abandoned-fg: var(--ivr-neutral-normal); /* #6c737f */
+  --ivr-status-abandoned-solid-bg: var(--ivr-neutral-normal); /* #6c737f */
+  --ivr-status-abandoned-solid-fg: var(--ivr-color-white); /* #ffffff */
+
+  --ivr-status-inprogress-bg: var(--ivr-yellow-lightest); /* #fffcf5 */
+  --ivr-status-inprogress-fg: var(--ivr-yellow-normal); /* #f79009 */
+  --ivr-status-inprogress-solid-bg: var(--ivr-yellow-normal); /* #f79009 */
+  --ivr-status-inprogress-solid-fg: var(--ivr-color-white); /* #ffffff */
+
+  --ivr-status-resolved-bg: var(--ivr-green-lightest); /* #f6fef9 */
+  --ivr-status-resolved-fg: var(
+    --ivr-green-normal-active
+  ); /* #067647 (was #008236) */
+  --ivr-status-resolved-solid-bg: var(--ivr-green-normal); /* #17b26a */
+  --ivr-status-resolved-solid-fg: var(--ivr-color-white); /* #ffffff */
+
+  --ivr-status-closed-bg: var(--ivr-lavender-lightest-hover); /* #f9f5fa */
+  --ivr-status-closed-fg: var(--ivr-lavender-normal); /* #80519f */
+  --ivr-status-closed-solid-bg: var(--ivr-lavender-normal); /* #80519f */
+  --ivr-status-closed-solid-fg: var(--ivr-color-white); /* #ffffff */
+
+  /* ==========================================================================
+     Ticket conversation panel — Figma: IVR Redesign, node 673:93570 / 665:29222.
+
+     Used by the Conversation / Profile / AI Decision cards and the rest of
+     ticket-details (audio player, transcript, ServiceNow panel, status
+     timeline, comments, cost/summary panels). Every value below is a real
+     light/dark pair: aliased onto the semantic scale so each of these cards
+     inverts with the app's theme toggle, the same way --ivr-surface-* does.
+     --ivr-conv-panel-accent-button, --ivr-conv-panel-veil and
+     --ivr-conv-panel-on-accent are the three literals in this family
+     (variables_light.css / variables_dark.css): the first because no existing
+     scale primitive matches both Figma values, the other two because they must
+     hold the same value in both themes and every white/black token inverts.
+  ========================================================================== */
+  --ivr-conv-panel-bg: var(--ivr-bg-surface);
+  --ivr-conv-panel-text: var(--ivr-text-primary);
+  --ivr-conv-panel-muted: var(--ivr-text-secondary);
+  --ivr-conv-panel-border: var(--ivr-border-strong);
+  --ivr-conv-panel-accent: var(--ivr-secondary-normal);
+
+  --ivr-conv-panel-vip: var(--ivr-gold-normal); /* Profile "VIP Status: Yes" */
+  --ivr-conv-panel-positive: var(
+    --ivr-green-normal
+  ); /* Profile "Sentiment: Positive" */
+  --ivr-conv-panel-escalation: var(
+    --ivr-blue-dark-active
+  ); /* Summary "Escalation: Yes" */
+  /* Avatar circle bg + initials text (profile + chat, Figma node 673:52405 "SA"/"AA"
+     chips: bg #efefef, text #1f1f1f). This chip is a fixed light circle with dark
+     initials in BOTH themes -- not a themed pair -- so both are plain literals here
+     instead of `--ivr-bg-muted`/`--ivr-text-primary` aliases that invert with the
+     app theme. Previously each call site picked its own token for the text colour
+     (`--ivr-conv-panel-text` or `--ivr-conv-panel-bg`), which only gave correct
+     contrast in one theme and inverted to invisible in the other -- this single
+     literal pair is correct in both themes for every avatar call site. */
+  --ivr-conv-panel-avatar-bg: #efefef;
+  --ivr-conv-panel-avatar-text: #1f1f1f;
+  --ivr-conv-panel-vip-badge: var(
+    --ivr-lavender-normal
+  ); /* small VIP corner badge on avatars */
+  --ivr-conv-panel-bubble-user-bg: rgba(
+    var(--ivr-primary-rgb),
+    0.08
+  ); /* employee chat bubble (light theme value; dark override in variables_dark.css matches Figma's translucent-white bubble) */
+  --ivr-conv-panel-confidence-track: var(
+    --ivr-success-bg
+  ); /* AI Decision donut track */
+  --ivr-conv-panel-confidence-fill: var(
+    --ivr-green-normal
+  ); /* AI Decision donut progress */
+  --ivr-conv-panel-timeline-dot: var(--ivr-green-normal); /* completed step */
+  --ivr-conv-panel-timeline-line: var(
+    --ivr-green-light-hover
+  ); /* completed connector */
+  --ivr-conv-panel-status-resolved-bg: var(
+    --ivr-status-resolved-bg
+  ); /* ServiceNow header status pill */
+  --ivr-conv-panel-status-resolved-fg: var(--ivr-status-resolved-fg);
+  --ivr-conv-panel-status-default-bg: var(
+    --ivr-status-abandoned-bg
+  ); /* non-resolved fallback */
+  --ivr-conv-panel-status-default-fg: var(--ivr-status-abandoned-fg);
+  --ivr-conv-panel-timestamp-dim: var(
+    --ivr-text-muted
+  ); /* "-" separator in bubble meta rows */
+  --ivr-conv-panel-surface: var(
+    --ivr-neutral-lightest-hover
+  ); /* raised inner box (comment/composer/ticket-message) */
+  --ivr-conv-panel-text-secondary: var(
+    --ivr-neutral-dark-active
+  ); /* comment body text */
+  --ivr-conv-panel-warning: var(
+    --ivr-yellow-normal
+  ); /* "static placeholder" hint marker */
+  --ivr-conv-panel-error: var(--ivr-red-normal);
+  --ivr-conv-panel-error-bg: rgba(var(--ivr-red-normal-rgb), 0.12);
+  --ivr-conv-panel-info: var(--ivr-blue-normal);
+  --ivr-conv-panel-shadow: rgba(var(--ivr-alpha-black-rgb), 0.2);
+  --ivr-conv-panel-shadow-tight: rgba(var(--ivr-alpha-black-rgb), 0.1);
+
+  /* ==========================================================================
+     Header / profile menu — Figma: IVR Redesign, node 1238:40180 ("Nevbar")
+     and its profile dropdown. --ivr-menu-surface, --ivr-menu-surface-selected,
+     --ivr-menu-item-ink, --ivr-avatar-ring, --ivr-menu-divider and
+     --ivr-shadow-menu are literal light/dark pairs in variables_light.css /
+     variables_dark.css (see those files); everything below aliases those plus
+     the agentic scale onto semantic names for the header and dropdown.
+  ========================================================================== */
+  --ivr-menu-label: var(
+    --ivr-agentic-secondary-300
+  ); /* section headers: THEME / LANGUAGE (#939393, was secondary-400 #888888) */
+  --ivr-menu-item-ink-active: var(
+    --ivr-agentic-primary-200
+  ); /* selected row + check */
+  --ivr-menu-danger: var(--ivr-agentic-error-500); /* Logout */
+  --ivr-header-muted: var(
+    --ivr-agentic-secondary-300
+  ); /* "Welcome," + collapse-button hairline */
+  --ivr-header-hairline: var(--ivr-agentic-secondary-300);
+}

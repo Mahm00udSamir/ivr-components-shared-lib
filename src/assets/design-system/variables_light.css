@@ -1,0 +1,423 @@
+:root {
+  /* ==================== BASE COLORS ==================== */
+  --ivr-color-white: #ffffff;
+  --ivr-color-black: #121214;
+
+  /* ==================== SEMANTIC TEXT ====================
+     Mirrors variables_dark.css's override 1:1 so no token exists in only one
+     theme file -- resolves to the same value ivr_tokens.css's alias already
+     gives light mode (--ivr-neutral-normal / --ivr-neutral-light-active). */
+  --ivr-text-secondary: var(--ivr-neutral-light-active); /* #9da4ae */
+  --ivr-text-muted: var(--ivr-neutral-normal); /* #6c737f */
+
+  /* ==================== BRAND COLORS ==================== */
+  /* Primary (Purple) */
+  --ivr-surface-subtle: #efe9ee;
+  --ivr-primary-light: #efe9ee;
+  --ivr-primary-light-hover: #e7dee5;
+  --ivr-primary-light-active: #cebcc9;
+  --ivr-primary-normal: #602650;
+  --ivr-primary-normal-hover: #562248;
+  --ivr-primary-normal-active: #4d1e40;
+  --ivr-primary-dark: #481d3c;
+  --ivr-primary-dark-hover: #3a1730;
+  --ivr-primary-dark-active: #2b1124;
+  --ivr-primary-darker: #220d1c;
+
+  /* Secondary (Teal) */
+  --ivr-secondary-light: #e9f9f8;
+  --ivr-secondary-light-hover: #def7f5;
+  --ivr-secondary-light-active: #bbeeea;
+  --ivr-secondary-normal: #25c7bc;
+  --ivr-secondary-normal-hover: #21b3a9;
+  --ivr-secondary-normal-active: #21b3a9;
+  --ivr-secondary-dark: #1c958d;
+  --ivr-secondary-dark-hover: #167771;
+  --ivr-secondary-dark-active: #115a55;
+  --ivr-secondary-darker: #0d4642;
+
+  /* ==================== NEUTRAL COLORS ==================== */
+  /* Neutral Grays */
+  /* Was #fafafa — Figma Gray/Neutral "Lightest" light mode is pure white. */
+  --ivr-neutral-lightest: #ffffff;
+  --ivr-neutral-lightest-hover: #eeeeee;
+  --ivr-neutral-lightest-active: #f3f4f6;
+  --ivr-neutral-light: #e5e7eb;
+  --ivr-neutral-light-hover: #d2d6db;
+  --ivr-neutral-light-active: #9da4ae;
+  --ivr-neutral-normal: #6c737f;
+  --ivr-neutral-normal-hover: #4d5761;
+  --ivr-neutral-normal-active: #384250;
+  --ivr-neutral-dark: #1f2a37;
+  --ivr-neutral-dark-hover: #111927;
+  --ivr-neutral-dark-active: #0d121c;
+
+  /* ==================== ACCENT COLORS ==================== */
+  /* Red (Error/Danger) */
+  --ivr-red-lightest: #fffbfa;
+  --ivr-red-lightest-hover: #fef3f2;
+  --ivr-red-lightest-active: #fee4e2;
+  --ivr-red-light: #fecdca;
+  --ivr-red-light-hover: #fda29b;
+  --ivr-red-light-active: #f97066;
+  --ivr-red-normal: #f04438;
+  --ivr-red-normal-hover: #d92d20;
+  --ivr-red-normal-active: #b42318;
+  --ivr-red-dark: #912018;
+  --ivr-red-dark-hover: #7a271a;
+  --ivr-red-dark-active: #55160c;
+
+  /* Yellow (Warning) */
+  --ivr-yellow-lightest: #fffcf5;
+  --ivr-yellow-lightest-hover: #fffaeb;
+  --ivr-yellow-lightest-active: #fef0c7;
+  --ivr-yellow-light: #fedf89;
+  --ivr-yellow-light-hover: #fec84b;
+  --ivr-yellow-light-active: #fdb022;
+  --ivr-yellow-normal: #f79009;
+  --ivr-yellow-normal-hover: #dc6803;
+  --ivr-yellow-normal-active: #b54708;
+  --ivr-yellow-dark: #93370d;
+  --ivr-yellow-dark-hover: #7a2e0e;
+  --ivr-yellow-dark-active: #4e1d09;
+
+  /* Green (Success) */
+  --ivr-green-lightest: #f6fef9;
+  --ivr-green-lightest-hover: #ecfdf3;
+  --ivr-green-lightest-active: #dcfae6;
+  --ivr-green-light: #abefc6;
+  --ivr-green-light-hover: #75e0a7;
+  --ivr-green-light-active: #47cd89;
+  --ivr-green-normal: #17b26a;
+  --ivr-green-normal-hover: #079455;
+  --ivr-green-normal-active: #067647;
+  --ivr-green-dark: #085d3a;
+  --ivr-green-dark-hover: #074d31;
+  --ivr-green-dark-active: #053321;
+
+  /* Blue (Info) */
+  --ivr-blue-lightest: #f5faff;
+  --ivr-blue-lightest-hover: #eff8ff;
+  --ivr-blue-lightest-active: #d1e9ff;
+  --ivr-blue-light: #b2ddff;
+  --ivr-blue-light-hover: #84caff;
+  --ivr-blue-light-active: #53b1fd;
+  --ivr-blue-normal: #2e90fa;
+  --ivr-blue-normal-hover: #1570ef;
+  --ivr-blue-normal-active: #175cd3;
+  --ivr-blue-dark: #1849a9;
+  --ivr-blue-dark-hover: #194185;
+  --ivr-blue-dark-active: #102a56;
+
+  /* Gold (Secondary) */
+  --ivr-gold-lightest: #fffef7;
+  --ivr-gold-lightest-hover: #fffef2;
+  --ivr-gold-lightest-active: #fffce6;
+  --ivr-gold-light: #fcf3bd;
+  --ivr-gold-light-hover: #fae996;
+  --ivr-gold-light-active: #f7d54d;
+  --ivr-gold-normal: #f5bd02;
+  --ivr-gold-normal-hover: #dba102;
+  --ivr-gold-normal-active: #b87b02;
+  --ivr-gold-dark: #945c01;
+  --ivr-gold-dark-hover: #6e3c00;
+  --ivr-gold-dark-active: #472400;
+
+  /* Lavender (Tertiary) */
+  --ivr-lavender-lightest: #fefcff;
+  --ivr-lavender-lightest-hover: #f9f5fa;
+  --ivr-lavender-lightest-active: #f2e9f5;
+  --ivr-lavender-light: #e1cce8;
+  --ivr-lavender-light-hover: #ccadd9;
+  --ivr-lavender-light-active: #a57bba;
+  --ivr-lavender-normal: #80519f;
+  --ivr-lavender-normal-hover: #6d428f;
+  --ivr-lavender-normal-active: #532d75;
+  --ivr-lavender-dark: #3d1d5e;
+  --ivr-lavender-dark-hover: #281047;
+  --ivr-lavender-dark-active: #16072e;
+
+  /* ==================== RGB VALUES ==================== */
+  /* Primary RGB */
+  --ivr-primary-normal-rgb: 96, 38, 80;
+  --ivr-primary-normal-30-rgb: 96, 38, 80;
+  --ivr-primary-light-active-rgb: 206, 188, 201;
+  --ivr-primary-normal-active-rgb: 77, 30, 64;
+  --ivr-primary-normal-hover-rgb: 86, 34, 72;
+  --ivr-primary-200-rgb: 96, 38, 80;
+  --ivr-primary-rgb: 96, 38, 80;
+
+  /* Secondary RGB */
+  --ivr-secondary-normal-rgb: 37, 199, 188;
+  --ivr-secondary-dark-rgb: 28, 149, 141;
+  --ivr-secondary-rgb: 37, 199, 188;
+
+  /* Neutral RGB */
+  --ivr-neutral-light-rgb: 229, 231, 235;
+  --ivr-neutral-dark-rgb: 31, 42, 55;
+  --ivr-neutral-lightest-active-rgb: 243, 244, 246;
+  --ivr-neutral-light-active-rgb: 210, 214, 219;
+  --ivr-neutral-normal-active-rgb: 56, 66, 80;
+  --ivr-neutral-lightest-hover-rgb: 243, 244, 246;
+  --ivr-neutral-light-hover-rgb: 210, 214, 219;
+  --ivr-neutral-normal-hover-rgb: 77, 87, 97;
+  --ivr-neutral-lightest-rgb: 243, 244, 246;
+  --ivr-neutral-normal-rgb: 77, 87, 97;
+  --ivr-neutral-darkest-rgb: 17, 24, 39;
+
+  /* Red RGB */
+  --ivr-red-normal-rgb: 240, 68, 56;
+  --ivr-red-normal-hover-rgb: 217, 45, 32;
+  --ivr-red-dark-hover-rgb: 145, 32, 24;
+  --ivr-red-lightest-rgb: 254, 228, 226;
+  --ivr-red-light-hover-rgb: 254, 205, 202;
+  --ivr-red-lightest-hover-rgb: 254, 243, 242;
+  --ivr-red-dark-rgb: 145, 32, 24;
+  --ivr-red-500-rgb: 240, 68, 56;
+
+  /* Yellow RGB */
+  --ivr-yellow-lightest-hover-rgb: 254, 240, 199;
+  --ivr-yellow-light-hover-rgb: 250, 233, 150;
+  --ivr-yellow-normal-hover-rgb: 181, 71, 8;
+  --ivr-yellow-dark-hover-rgb: 147, 55, 13;
+  --ivr-yellow-lightest-rgb: 254, 240, 199;
+  --ivr-yellow-dark-rgb: 147, 55, 13;
+
+  /* Green RGB */
+  --ivr-green-lightest-hover-rgb: 243, 252, 246;
+  --ivr-green-light-hover-rgb: 184, 234, 203;
+  --ivr-green-normal-hover-rgb: 27, 131, 84;
+  --ivr-green-dark-hover-rgb: 20, 87, 58;
+  --ivr-green-lightest-rgb: 243, 252, 246;
+  --ivr-green-dark-rgb: 20, 87, 58;
+
+  /* Blue RGB */
+  --ivr-blue-lightest-hover-rgb: 239, 248, 255;
+  --ivr-blue-light-hover-rgb: 178, 221, 255;
+  --ivr-blue-normal-hover-rgb: 21, 112, 239;
+  --ivr-blue-dark-hover-rgb: 24, 73, 169;
+  --ivr-blue-lightest-rgb: 239, 248, 255;
+  --ivr-blue-dark-rgb: 24, 73, 169;
+
+  /* ==================== ALPHA COLORS ====================
+     Semantic alpha aliases (white, primary, accent 10/20) live in
+     ivr_tokens.css — each maps onto a primitive that is already the intended
+     value in both themes. Only the literals that are NOT a primitive stay here. */
+  --ivr-alpha-black: #161616;
+  /* Mirrors variables_dark.css's #1a1a1a override -- light's own value is a
+     primitive (--ivr-color-white) so this is only here for file-pair parity. */
+  --ivr-alpha-white: #ffffff;
+
+  /* ==================== ALPHA COLORS RGB ==================== */
+  --ivr-alpha-white-rgb: 255, 255, 255;
+  --ivr-alpha-black-rgb: 22, 22, 22;
+
+  /* Accent alpha RGB — kept as literals, NOT aliased to *-normal-hover-rgb:
+     these hold the true RGB of --ivr-yellow-normal-hover (#dc6803) and
+     --ivr-green-normal-hover (#079455), whereas this file's own
+     --ivr-yellow-normal-hover-rgb / --ivr-green-normal-hover-rgb do not match
+     their sibling hex. Paired 1:1 with variables_dark.css. */
+  --ivr-alpha-yellow-10-rgb: 220, 104, 3;
+  --ivr-alpha-yellow-20-rgb: 220, 104, 3;
+  --ivr-alpha-green-10-rgb: 7, 148, 85;
+  --ivr-alpha-green-20-rgb: 7, 148, 85;
+
+  /* ==================== SHADOWS ==================== */
+  --ivr-shadow-sm: 0px 1px 4px 0px rgba(0, 0, 0, 0.16);
+  --ivr-alert-shadow: 0px 0px 1px 3px #df1c4126, 0px 0px 0px 1px #ec778d inset;
+  --ivr-shadow-focus-gray: 0px 0px 1px 3px #81889826,
+    0px 0px 0px 1px #c1c7d0 inset;
+  /* Profile dropdown (Figma node 1238:40180). Raw rgba, not
+     --ivr-alpha-black-rgb -- that pair inverts in dark (22,22,22 ->
+     212,212,212) and would flip this shadow white. Figma uses the same
+     literal in both themes. */
+  --ivr-shadow-menu: 0 8px 24px rgba(0, 0, 0, 0.5);
+
+  /* ==================== GLOBAL ====================
+     Semantic role aliases (--ivr-color-alert/-required/-success/-info/-warning,
+     --ivr-link-color, --ivr-title, --ivr-color-form-*, --ivr-color-sidebar-
+     hover-text) live in ivr_tokens.css. Only raw literals stay here. */
+  --ivr-color-card-border: #d9dbe1;
+  --ivr-color-divider: #d0d0d0;
+
+  /* ==================== LAYERED SURFACES ====================
+     Mirrors variables_dark.css's overrides 1:1 -- resolves to the same value
+     ivr_tokens.css's alias already gives light mode (plain white / the
+     lightest-hover neutral step); dark stacks distinct literal surfaces. */
+  --ivr-surface-card: var(--ivr-color-white);
+  --ivr-surface-sunken: var(--ivr-color-white);
+  --ivr-surface-raised: var(--ivr-color-white);
+  --ivr-surface-raised-hover: var(--ivr-neutral-lightest-hover); /* #eeeeee */
+  --ivr-surface-border: var(--ivr-neutral-lightest-hover); /* #eeeeee */
+
+  /* Text on a saturated badge/chip fill (status-tabs count pill) -- mirrors
+     variables_dark.css's literal override so no token exists in only one
+     theme file; light's own value is already the --ivr-color-white primitive. */
+  --ivr-badge-text-on-accent: var(--ivr-color-white);
+
+  /* ==================== TICKET CONVERSATION PANEL (button teal + veil) ====
+     Figma nodes 673:52405 / 673:52989 / 673:53014 use a teal on buttons/icon
+     tints that reads distinctly from the header/border accent
+     (--ivr-conv-panel-accent, aliased in ivr_tokens.css). No clean existing
+     scale primitive matches both figma values, so this stays a dedicated
+     literal pair here. Every other --ivr-conv-panel-* token is now a
+     light/dark-aware alias in ivr_tokens.css instead of a fixed literal. */
+  --ivr-conv-panel-accent-button: #21b3a9;
+  /* Audio waveform dimming overlay -- a compositing scrim, not a themed
+     surface, so it deliberately stays literal black in both files (same
+     pattern as --ivr-shadow-sm). */
+  --ivr-conv-panel-veil: rgba(0, 0, 0, 0.35);
+  /* Foreground on the teal waveform/play fill. Figma keeps this white in both
+     themes, but no existing white token holds still -- --ivr-color-white and
+     everything aliased off it (--ivr-text-inverse, --ivr-badge-text-on-accent)
+     invert to #121214 in dark. Same literal-pair pattern as
+     --ivr-auth-hero-text and --ivr-status-*-solid-fg. */
+  --ivr-conv-panel-on-accent: #ffffff;
+  /* Source SVGs on this card are dark by default -- already correct against
+     the light card, so no filter is needed here; variables_dark.css inverts
+     them to white to read against the now-dark card. */
+  --ivr-conv-panel-icon-filter: none;
+
+  /* Conversation panel's title band (node 872:66032 / 1040:75854): a solid
+     teal bar with white text in both themes -- variables_dark.css mirrors
+     this rather than aliasing across files. */
+  --ivr-conv-panel-title-band-bg: var(--ivr-conv-panel-accent);
+  --ivr-conv-panel-title-band-fg: var(--ivr-conv-panel-on-accent);
+
+  /* ==================== AUTH / LOGIN ====================
+     Figma: IVR Redesign, node 540:21097 (light) / 540:20627 (dark).
+     Generic aliases (--ivr-auth-chip-bg, -heading-text, -badge-*, -button-bg,
+     -feature-*, -input-*, -divider, -subtitle-text, -hero-*) are defined in
+     ivr_tokens.css; the ones below are mirrored here 1:1 with
+     variables_dark.css's overrides -- each currently resolves to exactly what
+     the ivr_tokens.css alias already gives light mode, kept explicit so no
+     token exists in only one theme file. */
+  --ivr-auth-chip-bg: var(--ivr-color-white);
+  --ivr-auth-chip-text: var(--ivr-secondary-normal); /* #25c7bc */
+  --ivr-auth-info-outer-bg: var(--ivr-color-white);
+  --ivr-auth-form-card-bg: var(--ivr-color-white);
+  --ivr-auth-input-bg: var(--ivr-color-white);
+  --ivr-auth-feature-bg: var(--ivr-color-white);
+  --ivr-auth-subtitle-text: var(--ivr-neutral-normal); /* #6c737f */
+  --ivr-auth-hero-desc: var(--ivr-neutral-normal); /* #6c737f */
+  --ivr-auth-input-border: var(--ivr-neutral-light-hover); /* #d2d6db */
+  --ivr-auth-input-placeholder: var(--ivr-neutral-light-hover); /* #d2d6db */
+  --ivr-auth-divider: var(--ivr-neutral-light); /* #e5e7eb */
+  --ivr-auth-badge-bg: var(--ivr-secondary-light); /* #e9f9f8 */
+  --ivr-auth-badge-border: var(--ivr-secondary-normal); /* #25c7bc */
+  --ivr-auth-badge-text: var(--ivr-secondary-normal); /* #25c7bc */
+  --ivr-auth-button-bg: var(--ivr-secondary-normal); /* #25c7bc */
+  --ivr-auth-feature-shadow: var(--ivr-shadow-sm);
+  --ivr-auth-logo-primary: var(--ivr-primary-normal); /* #602650 */
+  --ivr-auth-logo-secondary: var(--ivr-secondary-normal); /* #25c7bc */
+
+  --ivr-auth-bg-page: #f6f6f6;
+  --ivr-auth-canvas-bg: linear-gradient(
+    135deg,
+    rgba(231, 245, 246, 1) 6%,
+    rgba(255, 255, 255, 1) 42%,
+    rgba(255, 255, 255, 1) 63%,
+    rgba(228, 246, 248, 1) 93%
+  );
+  --ivr-auth-canvas-shadow: 0px 7px 29px 0px rgba(100, 100, 111, 0.2);
+  --ivr-auth-info-outer-border: rgba(37, 199, 188, 0.4);
+  --ivr-auth-form-card-border: rgba(37, 199, 188, 0.4);
+  --ivr-auth-hero-underline: linear-gradient(
+    90deg,
+    rgba(222, 247, 245, 1) 0%,
+    rgba(37, 199, 188, 1) 100%
+  );
+  --ivr-auth-feature-border: transparent;
+  --ivr-auth-ambient-glow: none;
+
+  /* Theme-invariant: the info card keeps its own fixed teal/white palette in
+     both themes rather than following the generic inversion. Mirrored
+     verbatim in variables_dark.css so no raw value lives in only one file. */
+  --ivr-auth-info-card-bg: #25c7bc;
+  --ivr-auth-info-title: #ffffff;
+  --ivr-auth-info-desc: #ffffff;
+  --ivr-auth-button-text: #ffffff;
+  --ivr-auth-feature-dot: #25c7bc;
+
+  /* ==================== SHELL AMBIENT GLOW ====================
+     Figma "Full Desktop": node 1252:42855 (light) / 1252:43188 (dark). The
+     two frames carry byte-identical layer stacks -- the ONLY difference is
+     the frame's base fill (#ffffff vs #121214), which .main-content-apps
+     already gets from --ivr-color-white. Solving both renders at once for a
+     single overlay confirms it: at the corner, light #c7b4e8 and dark #48356c
+     both resolve to rgb(134,93,206) at alpha 0.467, the three channels
+     agreeing to +/-0.007. So these four are MIRRORED LITERALS, identical in
+     variables_dark.css -- unlike the teal/purple pair they replace, whose
+     alpha genuinely did differ by theme.
+
+     Figma builds the glow from blurred ellipses over a linear gradient, so no
+     single radial reproduces it; these four are a least-squares fit to the
+     rendered frames (RMSE 1.9/255, 97.5% of samples within 4/255). The names
+     are roles in that fit, not Figma layer names. */
+  --ivr-shell-glow-lavender: rgba(170, 147, 204, 0.24);
+  --ivr-shell-glow-blue: rgba(119, 126, 190, 0.28);
+  --ivr-shell-glow-sage: rgba(141, 232, 150, 0.21);
+  --ivr-shell-glow-violet: rgba(108, 5, 230, 0.53);
+
+  /* ==================== CONVERSATION STATUS BADGES ====================
+     Light-theme values are aliases in ivr_tokens.css (BADGES block), mapped
+     onto the palette scales above. variables_dark.css keeps its own literal
+     block for this set -- that palette is a different hue system, and its
+     :root[data-theme="dark"] rules outrank the ivr_tokens :root aliases, so
+     dark still wins on specificity. Figma: "Conv Status" set (node 381:14673). */
+
+  /* ==================== AGENTIC COLORS ====================
+     Figma: Colors / Brand colors / Agentic Colors, from the Light/Dark token
+     export (2026-09-05). Theme-invariant -- the export lists an identical hex
+     for light and dark on all 22 rows, so this block is mirrored verbatim in
+     variables_dark.css instead of inverting. Supersedes the previous 18-row
+     hand-assembled block (dropped the undocumented Secondary 400 stopgap;
+     Error 500 is now a real Figma row at a different hex; added Error 50/100
+     and the Information scale). */
+  --ivr-agentic-primary-50: #6f6c90;
+  --ivr-agentic-primary-200: #20c8bd;
+  --ivr-agentic-primary-300: #1db3a9;
+  --ivr-agentic-primary-400: #c56dac;
+  --ivr-agentic-secondary-50: #d9dbe9;
+  --ivr-agentic-secondary-100: #424242;
+  --ivr-agentic-secondary-200: #515571;
+  --ivr-agentic-secondary-300: #939393;
+  --ivr-agentic-secondary-500: #6750a3;
+  --ivr-agentic-success-50: #e9fce9;
+  --ivr-agentic-success-100: #d3f8d3;
+  --ivr-agentic-success-200: #a6f2a6;
+  --ivr-agentic-success-500: #19aa19;
+  --ivr-agentic-warning-50: #e76161;
+  --ivr-agentic-warning-100: #ff9500;
+  --ivr-agentic-warning-200: #ff4747;
+  --ivr-agentic-error-50: #e76161;
+  --ivr-agentic-error-100: #fbd0d2;
+  --ivr-agentic-error-500: #b90e17;
+  --ivr-agentic-information-50: #e5f2ff;
+  --ivr-agentic-information-100: #cce5ff;
+  --ivr-agentic-information-500: #007bff;
+
+  /* Figma Gray/Neutral: Side Bar tab. */
+  --ivr-neutral-sidebar-tab: #f1f5f9;
+  /* Figma Gray/Neutral: Tabs Choose Background. Same value as the existing
+     PROFILE MENU dropdown surface below -- aliased there instead of repeated. */
+  --ivr-neutral-tabs-choose-bg: #ededed;
+
+  /* Figma Gray/Base: Background, Icons side bar. */
+  --ivr-color-background: #ffffff;
+  --ivr-color-sidebar-icon: #1f1f1f;
+
+  /* ==================== PROFILE MENU ====================
+     Figma node 1238:40180 ("Nevbar") -> Profile Header & Dropdown, light
+     variant. Unlike AGENTIC COLORS above, this block does NOT mirror verbatim
+     -- the dropdown surface and item ink genuinely differ by theme, so these
+     are literal pairs rather than aliases into the agentic scale. */
+  --ivr-menu-surface: var(--ivr-neutral-tabs-choose-bg); /* #ededed */
+  --ivr-menu-surface-selected: #f7f8fa;
+  --ivr-menu-item-ink: #515571;
+  --ivr-avatar-ring: #1db3a9;
+  /* Figma specifies #ffffff @ 10% for this divider in BOTH themes, which is
+     invisible on this surface -- treated as a design bug and given the
+     black-alpha counterpart instead of the literal value. */
+  --ivr-menu-divider: rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,248 @@
+/* ==================== BUTTON BASE STYLES ==================== */
+.ivr-btn {
+  /* Common properties */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem; /* 12px */
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+
+  /* Default state */
+  background-color: var(--ivr-primary-normal);
+  color: var(--ivr-color-white);
+  border-radius: 1.2rem; /* 1.2rem */
+  transition: all 0.2s ease;
+
+  /* default size */
+  padding: 1.2rem 1.6rem; /* 12px 16px */
+  height: 4.4rem; /* 44px */
+  font-size: 1.4rem; /* 14px */
+  line-height: 155%; /* 20px */
+  min-width: 13.8rem; /* 138px */
+}
+
+@media (max-width: 1024px) {
+  .ivr-btn {
+    min-width: 10rem !important;
+  }
+}
+
+/* ==================== BUTTON STATES ==================== */
+.ivr-btn:disabled {
+  background-color: var(--ivr-neutral-light) !important;
+  color: var(--ivr-neutral-normal) !important;
+  cursor: not-allowed !important;
+  opacity: 0.6 !important;
+  pointer-events: none !important;
+}
+
+.ivr-btn:active:not(:disabled),
+.ivr-btn:focus:not(:disabled):not(.loading) {
+  outline: none;
+}
+
+/* ==================== BUTTON SIZES ==================== */
+.ivr-btn.small {
+  padding: 1rem 1.6rem; /* 10px 16px */
+  height: 3.6rem; /* 36px for default state */
+  font-size: 1.4rem; /* 14px */
+  line-height: 155%; /* 16px */
+  min-width: 13.8rem; /* 138px - Hug width */
+}
+
+.ivr-btn.medium {
+  padding: 1.2rem 1.6rem; /* 12px 16px */
+  height: 4.4rem; /* 44px */
+  font-size: 1.4rem; /* 14px */
+  line-height: 155%; /* 20px */
+  min-width: 13.8rem; /* 138px */
+}
+
+.ivr-btn.large {
+  padding: 1.4rem 2.4rem; /* 14px 24px */
+  height: 5.4rem; /* 54px */
+  font-size: 1.6rem; /* 16px */
+  line-height: 160%; /* 24px */
+  min-width: 15.9rem; /* 159px */
+}
+
+/* ==================== BUTTON TYPES ==================== */
+/* PRIMARY BUTTON */
+.ivr-btn.primary {
+  background-color: var(--ivr-primary-normal);
+  color: var(--ivr-color-white);
+}
+
+.ivr-btn.primary:hover:not(:disabled):not(.loading) {
+  background-color: var(--ivr-primary-normal-hover);
+}
+
+.ivr-btn.primary:active:not(:disabled):not(.loading) {
+  background-color: var(--ivr-primary-normal-active);
+}
+
+/* SECONDARY BUTTON */
+.ivr-btn.secondary {
+  background-color: var(--ivr-secondary-normal);
+  color: var(--ivr-color-white);
+}
+
+.ivr-btn.secondary:hover:not(:disabled):not(.loading) {
+  background-color: var(--ivr-secondary-normal-hover);
+}
+
+.ivr-btn.secondary:active:not(:disabled):not(.loading) {
+  background-color: var(--ivr-secondary-normal-active);
+}
+
+/* STROKE BUTTON (Outlined) */
+.ivr-btn.stroke {
+  background-color: transparent;
+  color: var(--ivr-primary-normal-hover);
+  border: 1px solid var(--ivr-primary-normal-hover);
+}
+
+.ivr-btn.stroke:hover:not(:disabled):not(.loading) {
+  background-color: var(--ivr-primary-normal);
+  color: var(--ivr-color-white);
+  border-color: var(--ivr-primary-normal);
+}
+
+.ivr-btn.stroke:active:not(:disabled):not(.loading) {
+  background-color: var(--ivr-primary-light-active);
+  color: var(--ivr-primary-normal-active);
+  border-color: var(--ivr-primary-normal-active);
+}
+
+.ivr-btn.stroke-red {
+  background-color: transparent;
+  color: var(--ivr-red-normal-hover);
+  border: 1px solid var(--ivr-red-normal-hover);
+}
+
+.ivr-btn.stroke-red:hover:not(:disabled):not(.loading) {
+  background-color: var(--ivr-red-normal);
+
+  color: var(--ivr-color-white);
+  border-color: var(--ivr-red-normal);
+}
+
+.ivr-btn.stroke-red:active:not(:disabled):not(.loading) {
+  background-color: var(--ivr-red-light-active);
+  color: var(--ivr-red-normal-active);
+  border-color: var(--ivr-red-normal-active);
+}
+
+/* GHOST BUTTON (Minimal) */
+.ivr-btn.ghost {
+  background-color: transparent;
+  color: var(--ivr-color-black);
+  border: 1px solid transparent;
+}
+
+.ivr-btn.ghost:hover:not(:disabled):not(.loading) {
+  background-color: transparent;
+  color: var(--ivr-primary-normal-hover);
+}
+
+.ivr-btn.ghost:active:not(:disabled):not(.loading) {
+  background-color: var(--ivr-primary-normal);
+  color: var(--ivr-color-white);
+}
+
+/* ==================== ALERT/ERROR STATES ==================== */
+.ivr-btn.alert,
+.ivr-btn.error {
+  background-color: var(--ivr-red-normal);
+  color: var(--ivr-color-white);
+}
+
+.ivr-btn.alert:hover:not(:disabled),
+.ivr-btn.error:hover:not(:disabled):not(.loading) {
+  background-color: var(--ivr-red-normal-hover);
+  border-color: var(--ivr-red-normal-hover);
+}
+
+.ivr-btn.alert:active:not(:disabled),
+.ivr-btn.error:active:not(:disabled):not(.loading) {
+  background-color: var(--ivr-red-normal-active);
+  border-color: var(--ivr-red-normal-active);
+}
+
+/* ==================== ICON STYLES ==================== */
+.ivr-btn .icon-left,
+.ivr-btn .icon-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.ivr-btn .icon-left {
+  margin-inline-start: 0.8rem;
+}
+
+.ivr-btn .icon-right {
+  margin-inline-end: 0.8rem;
+}
+
+.ivr-btn.small .icon-left,
+.ivr-btn.small .icon-right {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.ivr-btn.large .icon-left,
+.ivr-btn.large .icon-right {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* ==================== LOADING STATE ==================== */
+.ivr-btn.loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none !important;
+}
+
+.ivr-btn.loading::after {
+  content: "";
+  position: absolute;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: ivr-spin 0.8s linear infinite;
+}
+
+.ivr-btn.loading.stroke::after,
+.ivr-btn.loading.ghost::after {
+  border: 2px solid rgba(96, 38, 80, 0.3);
+  border-top-color: var(--ivr-primary-normal);
+}
+
+@keyframes ivr-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==================== FOCUS VISIBLE ==================== */
+.ivr-btn:focus-visible {
+  box-shadow: var(--ivr-shadow-focus-gray);
+}
+
+/* ==================== FULL WIDTH ==================== */
+.ivr-btn.full-width,
+.ivr-btn.width-full {
+  width: 100%;
+}
