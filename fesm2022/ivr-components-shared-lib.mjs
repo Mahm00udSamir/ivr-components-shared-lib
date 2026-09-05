@@ -9355,73 +9355,90 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.2.25", ngImpo
 const SIDENAV_MOBILE_MAX = 639;
 /** At or below this width the sidenav auto-collapses to an icon rail. */
 const SIDENAV_RAIL_MAX = 1024;
-const COLLAPSED_STORAGE_KEY = 'isCollapsed';
 /**
  * Responsive collapse / drawer state for the application sidenav.
  *
- * Three bands:
- *   wide   (> 1024)      expanded, always visible
- *   rail   (640 .. 1024) collapsed to icons, always visible
- *   mobile (<= 639)      full-width off-canvas drawer, hidden by default
+ * `isCollapsed` means the same thing in both shapes: the sidenav is not showing
+ * its full-width rows. Off mobile that is the icon rail; on mobile, where there
+ * is no rail, it is the parked drawer -- so opening and closing the drawer
+ * updates `isCollapsed` exactly the way the rail toggle does.
  *
- * Within a band the user's own choice wins: the band default is applied on the
- * first measurement and then only when the band changes. (An earlier version
- * re-applied it on every resize event, which discarded manual collapses as soon
- * as the window was nudged.)
+ * It starts collapsed, and every resize at any width above the mobile
+ * breakpoint collapses it again, so a manual expand never survives a resize.
+ * Inside the mobile band it follows the drawer instead, so a resize cannot snap
+ * an open drawer shut.
  */
 class SidenavService {
-    _isCollapsed = signal(false);
-    _hidden = signal(false);
-    _isMobileView = signal(false);
+    isCollapsed = signal(true);
+    hidden = signal(false);
+    isMobileView = signal(false);
     /** Last measured band; `null` until the first measurement. */
     band = null;
-    /** True when the sidenav is showing icons only. */
-    isCollapsed = this._isCollapsed.asReadonly();
-    /** True when the mobile drawer is closed. Meaningless outside the mobile band. */
-    hidden = this._hidden.asReadonly();
-    /** True when the sidenav is a drawer rather than an in-flow column. */
-    isMobileView = this._isMobileView.asReadonly();
+    // readonly isCollapsed = this._isCollapsed.asReadonly();
+    // /** True when the mobile drawer is closed. Meaningless outside the mobile band. */
+    // readonly hidden = this._hidden.asReadonly();
+    // /** True when the sidenav is a drawer rather than an in-flow column. */
+    // readonly isMobileView = this._isMobileView.asReadonly();
     constructor() {
         this.listenToWindowResize();
     }
+    /** On mobile the drawer is the only thing there is to expand or collapse. */
     toggleCollapsed() {
-        this.setCollapsed(!this._isCollapsed());
+        if (this.isMobileView()) {
+            this.toggleHidden();
+            return;
+        }
+        this.setCollapsed(!this.isCollapsed());
     }
     setCollapsed(collapsed) {
-        this._isCollapsed.set(collapsed);
-        this.persistCollapsed(collapsed);
+        if (this.isMobileView()) {
+            this.setHidden(collapsed);
+            return;
+        }
+        this.isCollapsed.set(collapsed);
     }
     /* ---------- drawer: no-ops outside the mobile band, where there is none ---------- */
     toggleHidden() {
-        if (this._isMobileView()) {
-            this._hidden.update((hidden) => !hidden);
+        if (this.isMobileView()) {
+            this.setHidden(!this.hidden());
         }
     }
     hide() {
-        if (this._isMobileView()) {
-            this._hidden.set(true);
+        if (this.isMobileView()) {
+            this.setHidden(true);
         }
     }
     show() {
-        if (this._isMobileView()) {
-            this._hidden.set(false);
+        if (this.isMobileView()) {
+            this.setHidden(false);
         }
+    }
+    /**
+     * The drawer's two states are the mobile band's expanded / collapsed states,
+     * so they are written together and never drift apart.
+     */
+    setHidden(hidden) {
+        this.hidden.set(hidden);
+        this.isCollapsed.set(hidden);
     }
     listenToWindowResize() {
         if (typeof window === 'undefined') {
             return;
         }
-        const storedCollapsed = this.restoreCollapsed();
         const handleResize = () => {
             const band = this.bandFor(window.innerWidth);
-            if (band === this.band) {
-                return;
+            // The drawer's own show / hide only changes at the mobile boundary, so it
+            // is re-applied when the band changes rather than on every resize --
+            // otherwise nudging the window would snap an open drawer shut.
+            if (band !== this.band) {
+                this.band = band;
+                this.isMobileView.set(band === 'mobile');
+                this.hidden.set(band === 'mobile');
             }
-            // First measurement only: a collapse chosen earlier this session
-            // outranks the band's default.
-            const stored = this.band === null ? storedCollapsed : null;
-            this.band = band;
-            this.applyBand(band, stored);
+            // Collapse is re-applied on every resize, at any resulting width, so a
+            // manual expand never survives one. Inside the mobile band it tracks the
+            // drawer instead of the width, which the line above has just settled.
+            this.isCollapsed.set(band === 'mobile' ? this.hidden() : true);
         };
         handleResize();
         window.addEventListener('resize', handleResize);
@@ -9431,30 +9448,6 @@ class SidenavService {
             return 'mobile';
         }
         return width <= SIDENAV_RAIL_MAX ? 'rail' : 'wide';
-    }
-    applyBand(band, storedCollapsed) {
-        this._isMobileView.set(band === 'mobile');
-        this._hidden.set(band === 'mobile');
-        // The drawer renders full-width rows, so mobile is never the icon rail.
-        this.setCollapsed(band === 'mobile' ? false : (storedCollapsed ?? band === 'rail'));
-    }
-    /** `null` when nothing was stored, so a fresh session falls back to the band default. */
-    restoreCollapsed() {
-        try {
-            const stored = sessionStorage.getItem(COLLAPSED_STORAGE_KEY);
-            return stored === null ? null : stored === 'true';
-        }
-        catch {
-            return null;
-        }
-    }
-    persistCollapsed(collapsed) {
-        try {
-            sessionStorage.setItem(COLLAPSED_STORAGE_KEY, String(collapsed));
-        }
-        catch {
-            // Private-mode / blocked storage: collapse still works for this session.
-        }
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.2.25", ngImport: i0, type: SidenavService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
     static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.2.25", ngImport: i0, type: SidenavService, providedIn: 'root' });

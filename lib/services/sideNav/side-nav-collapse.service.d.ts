@@ -6,40 +6,36 @@ export declare const SIDENAV_RAIL_MAX = 1024;
 /**
  * Responsive collapse / drawer state for the application sidenav.
  *
- * Three bands:
- *   wide   (> 1024)      expanded, always visible
- *   rail   (640 .. 1024) collapsed to icons, always visible
- *   mobile (<= 639)      full-width off-canvas drawer, hidden by default
+ * `isCollapsed` means the same thing in both shapes: the sidenav is not showing
+ * its full-width rows. Off mobile that is the icon rail; on mobile, where there
+ * is no rail, it is the parked drawer -- so opening and closing the drawer
+ * updates `isCollapsed` exactly the way the rail toggle does.
  *
- * Within a band the user's own choice wins: the band default is applied on the
- * first measurement and then only when the band changes. (An earlier version
- * re-applied it on every resize event, which discarded manual collapses as soon
- * as the window was nudged.)
+ * It starts collapsed, and every resize at any width above the mobile
+ * breakpoint collapses it again, so a manual expand never survives a resize.
+ * Inside the mobile band it follows the drawer instead, so a resize cannot snap
+ * an open drawer shut.
  */
 export declare class SidenavService {
-    private readonly _isCollapsed;
-    private readonly _hidden;
-    private readonly _isMobileView;
+    readonly isCollapsed: import("@angular/core").WritableSignal<boolean>;
+    readonly hidden: import("@angular/core").WritableSignal<boolean>;
+    readonly isMobileView: import("@angular/core").WritableSignal<boolean>;
     /** Last measured band; `null` until the first measurement. */
     private band;
-    /** True when the sidenav is showing icons only. */
-    readonly isCollapsed: import("@angular/core").Signal<boolean>;
-    /** True when the mobile drawer is closed. Meaningless outside the mobile band. */
-    readonly hidden: import("@angular/core").Signal<boolean>;
-    /** True when the sidenav is a drawer rather than an in-flow column. */
-    readonly isMobileView: import("@angular/core").Signal<boolean>;
     constructor();
+    /** On mobile the drawer is the only thing there is to expand or collapse. */
     toggleCollapsed(): void;
     setCollapsed(collapsed: boolean): void;
     toggleHidden(): void;
     hide(): void;
     show(): void;
+    /**
+     * The drawer's two states are the mobile band's expanded / collapsed states,
+     * so they are written together and never drift apart.
+     */
+    private setHidden;
     private listenToWindowResize;
     private bandFor;
-    private applyBand;
-    /** `null` when nothing was stored, so a fresh session falls back to the band default. */
-    private restoreCollapsed;
-    private persistCollapsed;
     static ɵfac: i0.ɵɵFactoryDeclaration<SidenavService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<SidenavService>;
 }
