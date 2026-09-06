@@ -231,6 +231,12 @@
      why this stays a raw literal instead of --ivr-alpha-black-rgb. Same value
      in both themes. */
   --ivr-shadow-menu: 0 8px 24px rgba(0, 0, 0, 0.5);
+  /* Role Management redesign (Figma 1262:69703 / dark 1262:70534) -- same
+     literals in both themes; see variables_light.css. */
+  --ivr-shadow-badge: 0px 1px 2px 0px rgba(16, 24, 40, 0.05),
+    0px 1px 3px 0px rgba(16, 24, 40, 0.05);
+  --ivr-shadow-raised: 0px 2px 4px 0px rgba(22, 22, 22, 0.2),
+    0px 0px 1px 0px rgba(22, 22, 22, 0.1);
 
   /* ==================== GLOBAL ==================== */
   --ivr-color-card-border: #2b2b30;
