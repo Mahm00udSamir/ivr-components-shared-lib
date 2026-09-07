@@ -413,7 +413,7 @@
      Mirrors variables_light.css's block verbatim -- the export lists the same
      hex for light and dark on every row (see that file for the source and
      what changed vs. the previous 18-row block). */
-  --ivr-agentic-primary-50: #6f6c90;
+  --ivr-agentic-primary-50: #afadc2;
   --ivr-agentic-primary-200: #20c8bd;
   --ivr-agentic-primary-300: #1db3a9;
   --ivr-agentic-primary-400: #c56dac;
