@@ -5,6 +5,7 @@ import { ActivatedRouteSnapshot, Router } from '@angular/router';
 import { AuthBeService } from './auth.be.services';
 import { AuthContextService } from './auth-context.service';
 import { ToastService } from '../ui/toast.service';
+import { LoadingService } from '../ui/loading.service';
 import { Observable } from 'rxjs/internal/Observable';
 import * as i0 from "@angular/core";
 export declare class AuthService {
@@ -13,9 +14,10 @@ export declare class AuthService {
     private router;
     private storageService;
     private toastService;
+    private loadingService;
     Roles: typeof Roles;
     PERMISSIONS: typeof PERMISSIONS;
-    constructor(authContextService: AuthContextService, authBeService: AuthBeService, router: Router, storageService: StorageService, toastService: ToastService);
+    constructor(authContextService: AuthContextService, authBeService: AuthBeService, router: Router, storageService: StorageService, toastService: ToastService, loadingService: LoadingService);
     login(data: {
         username: string;
         password: string;
