@@ -1,3 +1,5 @@
+/** Cell alignment. `flex-start` / `flex-end` are kept as deprecated aliases of `start` / `end`. */
+export type TableAlign = 'start' | 'center' | 'end' | 'flex-start' | 'flex-end';
 export interface ITableHeader<T> {
     header: string;
     body?: keyof T;
@@ -5,7 +7,15 @@ export interface ITableHeader<T> {
     htmlRef?: string;
     sort: boolean;
     type?: 'Status' | 'Actions' | undefined;
-    headerAlign?: 'flex-start' | 'center' | 'flex-end';
+    headerAlign?: TableAlign;
+    /** Body-cell alignment. Defaults to `start`; the action column defaults to `end`. */
+    align?: TableAlign;
+    /**
+     * Show this column in the collapsed mobile row. At most two columns render
+     * there; when none is flagged, the first column and the status column are
+     * used (the pair the Figma mobile header shows).
+     */
+    mobileView?: boolean;
     inputTransform?: (item: any) => any;
 }
 export interface ITableCategory<T> {
@@ -23,5 +33,6 @@ export interface IStatusCol<T> {
     trueText: string;
     falseText: string;
     sort?: boolean;
-    headerAlign?: 'flex-start' | 'center' | 'flex-end';
+    headerAlign?: TableAlign;
+    align?: TableAlign;
 }

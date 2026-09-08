@@ -8,6 +8,8 @@ export interface IDropdownOption {
     latitude?: number;
     longitude?: number;
     status?: StatusType;
+    disabled?: boolean;
+    color?: string;
 }
 export interface IUserLookup {
     id: string;
@@ -20,6 +22,9 @@ export interface IUserLookup {
 export type StatusType = 'ACTIVE' | 'INACTIVE';
 export interface ITabDropdownOption extends IDropdownOption {
     disabled: boolean;
+    count?: number;
+    countColor?: string;
+    icon?: string;
 }
 export interface ListData {
     content: any;

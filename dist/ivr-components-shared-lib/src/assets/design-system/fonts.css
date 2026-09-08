@@ -1,0 +1,61 @@
+/*
+  Canonical brand typefaces for the whole IVR platform.
+
+  This file is the SINGLE SOURCE OF TRUTH for @font-face + the base font
+  application. It ships with ivr-components-shared-lib (see ng-package.json
+  assets glob) and every app -- the ivr-root-config shell and each
+  micro-frontend, whether embedded or run standalone -- loads it from
+  node_modules/ivr-components-shared-lib/assets/design-system/fonts.css.
+
+  The font binaries live alongside it under ../fonts, so the url() paths below
+  resolve the same way through both the Angular CLI (esbuild) and the shell's
+  webpack pipeline.
+*/
+
+@font-face {
+  font-family: "Somar";
+  src: url("../fonts/SomarGX.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SymbioARLT";
+  src: url("../fonts/SymbioAR+LT-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SymbioARLT";
+  src: url("../fonts/SymbioAR+LT-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*
+  Applied here so every consumer inherits the brand font with no per-app rule.
+  Kept to :root/html/body (not `*`) so component stylesheets can still override
+  locally; inheritance covers the rest.
+*/
+:root {
+  --app-font-family: "Somar", "SymbioARLT", "Cairo", sans-serif;
+
+  /* Foundational rem scale: 1rem = 10px at the 1440px Figma baseline, with a
+     gentle slope so wide monitors stay near 10-11px and a 10px floor so the
+     smaller (tablet/mobile) frames -- all authored at 1rem = 10px -- keep their
+     specified sizes. Every rem value across the platform depends on this, so it
+     must ship with the shared design system, not per app. */
+  font-size: clamp(10px, calc(0.05vw + 9.28px), 14px);
+
+  color: var(--ivr-text-primary);
+}
+
+html,
+body {
+  font-family: var(--app-font-family);
+  font-optical-sizing: auto;
+}

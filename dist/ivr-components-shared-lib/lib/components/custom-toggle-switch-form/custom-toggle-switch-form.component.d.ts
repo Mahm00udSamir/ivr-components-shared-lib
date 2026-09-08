@@ -1,3 +1,4 @@
+import { EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { IComponentFormError, IDropdownOption } from '../../interfaces';
 import * as i0 from "@angular/core";
@@ -14,6 +15,8 @@ export declare class CustomToggleSwitchFormComponent {
     trueValue: IDropdownOption;
     falseValue: IDropdownOption;
     height: string;
+    labelPosition: 'left' | 'right' | 'top' | 'bottom';
+    valueChange: EventEmitter<boolean>;
     value: boolean;
     private destroy$;
     ngOnInit(): void;
@@ -22,5 +25,5 @@ export declare class CustomToggleSwitchFormComponent {
     private isTrue;
     containRequiredError(): boolean;
     static ɵfac: i0.ɵɵFactoryDeclaration<CustomToggleSwitchFormComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<CustomToggleSwitchFormComponent, "custom-toggle-switch-form", never, { "label": { "alias": "label"; "required": false; }; "size": { "alias": "size"; "required": false; }; "onColor": { "alias": "onColor"; "required": false; }; "offColor": { "alias": "offColor"; "required": false; }; "thumbColor": { "alias": "thumbColor"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "parentForm": { "alias": "parentForm"; "required": true; }; "controlName": { "alias": "controlName"; "required": true; }; "validation": { "alias": "validation"; "required": false; }; "trueValue": { "alias": "trueValue"; "required": false; }; "falseValue": { "alias": "falseValue"; "required": false; }; "height": { "alias": "height"; "required": false; }; }, {}, never, never, true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CustomToggleSwitchFormComponent, "custom-toggle-switch-form", never, { "label": { "alias": "label"; "required": false; }; "size": { "alias": "size"; "required": false; }; "onColor": { "alias": "onColor"; "required": false; }; "offColor": { "alias": "offColor"; "required": false; }; "thumbColor": { "alias": "thumbColor"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "parentForm": { "alias": "parentForm"; "required": true; }; "controlName": { "alias": "controlName"; "required": true; }; "validation": { "alias": "validation"; "required": false; }; "trueValue": { "alias": "trueValue"; "required": false; }; "falseValue": { "alias": "falseValue"; "required": false; }; "height": { "alias": "height"; "required": false; }; "labelPosition": { "alias": "labelPosition"; "required": false; }; }, { "valueChange": "valueChange"; }, never, never, true, never>;
 }

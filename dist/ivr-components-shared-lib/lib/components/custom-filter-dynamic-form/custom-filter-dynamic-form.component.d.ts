@@ -1,13 +1,17 @@
 import { EventEmitter } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, FormGroup } from '@angular/forms';
 import { IDropdownOption } from '../../interfaces';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import * as i0 from "@angular/core";
 export interface IDynamicFilterConfig {
     id: string;
     label: string;
-    type: 'text' | 'date' | 'multiselect';
+    type: 'text' | 'date' | 'multiselect' | 'singleselect';
     placeholder?: string;
+    enableFilter?: boolean;
     options?: IDropdownOption[];
+    collapsed?: boolean;
+    icon?: string;
     validation?: {
         required?: boolean;
         minDate?: Date;
@@ -15,16 +19,23 @@ export interface IDynamicFilterConfig {
     };
 }
 export declare class CustomFilterDynamicFormComponent {
-    private fb;
+    private sanitizer;
     config: import("@angular/core").InputSignal<IDynamicFilterConfig[]>;
     values: import("@angular/core").InputSignal<Record<string, any> | null>;
     formChanged: EventEmitter<any>;
     formReset: EventEmitter<any>;
+    arrowSvg: SafeHtml;
+    collapseState: import("@angular/core").WritableSignal<Record<string, boolean>>;
     filterForm: FormGroup;
     filters: import("@angular/core").WritableSignal<IDynamicFilterConfig[]>;
     private destroy$;
-    constructor(fb: FormBuilder);
+    private initialized;
+    resetting: import("@angular/core").WritableSignal<boolean>;
+    private fb;
+    update: number;
+    constructor(sanitizer: DomSanitizer);
     ngOnInit(): void;
+    toggleCollapse(id: string): void;
     private buildForm;
     private isSame;
     private buildEmittableValues;

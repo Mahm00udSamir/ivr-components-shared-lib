@@ -11,5 +11,6 @@ export * from './ui/loading.service';
 export * from './ui/confirm-dialog.service';
 export * from './ui/custom-modal.service';
 export * from './translate/translation.service';
+export * from './theme/theme.service';
 export * from './sideNav/side-nav-collapse.service';
 export * from './geo-location.service';

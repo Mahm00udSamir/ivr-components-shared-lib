@@ -140,3 +140,4 @@ export declare function getFormValidationErrors(form: FormGroup): {
  * @returns {FormData} FormData object containing all form values
  */
 export declare function convertFormGroupToFormData(formGroup: FormGroup): FormData;
+export declare function convertToTitle(text: string): string;

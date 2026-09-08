@@ -17,6 +17,17 @@ export declare enum Roles {
     ROLE_ADMIN = "admin",
     ROLE_AGENT = "agent"
 }
+/**
+ * Where each role is sent when it opens a route it may not see, and what an
+ * app's catch-all route resolves to. Read through
+ * `AuthService.getRoleLandingRoute()`, never indexed directly.
+ *
+ * Mirrors ivr-root-config's `getDefaultHashRoute()` (layout.services.ts) and the
+ * first item of each role's menu in ivr-sidenav's `nav-items.service.ts` -- a
+ * role lands on the page its own sidebar highlights, so the three must change
+ * together.
+ */
+export declare const ROLE_LANDING_ROUTE: Record<Roles, string>;
 export declare enum PERMISSIONS {
     all = "all",
     PERMISSION_READ = "PERMISSION_READ",
