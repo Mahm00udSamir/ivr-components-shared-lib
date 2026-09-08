@@ -1,7 +1,18 @@
 import * as i0 from "@angular/core";
-/** At or below this width the sidenav becomes an off-canvas drawer. */
-export declare const SIDENAV_MOBILE_MAX = 639;
-/** At or below this width the sidenav auto-collapses to an icon rail. */
+/**
+ * At or below this width the sidenav becomes an off-canvas drawer (with the
+ * brand mobile header + hamburger). Aligned with the app content's own
+ * single-column breakpoint (the chat master-detail switches at 1024 too), so a
+ * narrowed window gets the full "mobile" shell in one step -- the sidebar rail
+ * no longer lingers as a column squeezing the content on tablet widths, which
+ * is what made panels (e.g. the chat list card) look like they vanished.
+ */
+export declare const SIDENAV_MOBILE_MAX = 1024;
+/**
+ * Kept equal to the mobile max: above it the sidenav is the desktop rail, at or
+ * below it the drawer takes over, so there is no separate in-between icon-rail
+ * band any more.
+ */
 export declare const SIDENAV_RAIL_MAX = 1024;
 /**
  * Responsive collapse / drawer state for the application sidenav.
