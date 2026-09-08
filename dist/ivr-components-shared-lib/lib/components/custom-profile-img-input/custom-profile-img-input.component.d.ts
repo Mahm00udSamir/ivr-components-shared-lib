@@ -1,0 +1,32 @@
+import { ElementRef, EventEmitter } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { ISmpAttachment } from '../../interfaces';
+import * as i0 from "@angular/core";
+export declare class CustomProfileImgInputComponent {
+    parentForm: FormGroup;
+    controlName: string;
+    FileTypes: string[];
+    maxFileSize: string;
+    firstImgSrc: import("@angular/core").InputSignal<string | null>;
+    placeholderText: import("@angular/core").InputSignal<string>;
+    disableDeleteButton: import("@angular/core").InputSignal<boolean>;
+    imageChanged: EventEmitter<ISmpAttachment>;
+    imageDeleted: EventEmitter<void>;
+    fileInput: ElementRef<HTMLInputElement>;
+    private _toast;
+    private blobUrlCache;
+    private mimeTypesMap;
+    private fileTypeIcons;
+    private defaultIcon;
+    selectedFileName: string | null;
+    constructor();
+    private clearFileInput;
+    fileUrl(fileData: ISmpAttachment | null): string;
+    removeSelectedFile(id: number): void;
+    ngOnDestroy(): void;
+    private readFileAsBase64;
+    onFileSelected($event: Event): Promise<void>;
+    get mimeTypes(): string[];
+    static ɵfac: i0.ɵɵFactoryDeclaration<CustomProfileImgInputComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CustomProfileImgInputComponent, "custom-profile-img-input", never, { "parentForm": { "alias": "parentForm"; "required": true; }; "controlName": { "alias": "controlName"; "required": true; }; "FileTypes": { "alias": "FileTypes"; "required": true; }; "maxFileSize": { "alias": "maxFileSize"; "required": true; }; "firstImgSrc": { "alias": "firstImgSrc"; "required": false; "isSignal": true; }; "placeholderText": { "alias": "placeholderText"; "required": false; "isSignal": true; }; "disableDeleteButton": { "alias": "disableDeleteButton"; "required": false; "isSignal": true; }; }, { "imageChanged": "imageChanged"; "imageDeleted": "imageDeleted"; }, never, never, true, never>;
+}
