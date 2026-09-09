@@ -7,6 +7,7 @@ export interface ILoginData {
     user: IUserData;
     roles: Roles[];
     permissions: PERMISSIONS[];
+    missingFields?: string[];
 }
 export interface IValidationData {
     valid: boolean;

@@ -207,39 +207,57 @@
   --ivr-alpha-blue-20-rgb: var(--ivr-blue-normal-hover-rgb);
 
   /* ==========================================================================
-     Auth / login — Figma: IVR Redesign, node 540:21097 (light) / 540:20627
-     (dark). Supersedes the previous login layout (nodes 574:93749/575:93999).
-
-     Aliases here resolve correctly in both themes because --ivr-color-black,
-     --ivr-color-white, --ivr-neutral-normal, --ivr-neutral-light(-hover),
-     --ivr-secondary-* already flip per theme file. Values that do NOT follow
-     that generic inversion — the fixed teal info card, white-on-teal button
-     text, the badge dot, the two glass-card surfaces — are literal pairs in
-     variables_light.css / variables_dark.css instead (see the block there for
-     which alias each override replaces).
+     Auth / login — Figma: IVR Redesign, node 1594:101534 (light) /
+     1594:101672 (dark). The screen's flat colours moved to the --ivr-agentic-*
+     roles in variables_light.css / variables_dark.css; the logo pair stays
+     aliased here because it does follow the generic per-theme inversion.
   ========================================================================== */
-  --ivr-auth-chip-bg: var(--ivr-color-white);
-  --ivr-auth-chip-text: var(--ivr-secondary-normal);
-  --ivr-auth-info-outer-bg: var(--ivr-color-white);
-  --ivr-auth-form-card-bg: var(--ivr-color-white);
-  --ivr-auth-input-bg: var(--ivr-color-white);
-  --ivr-auth-feature-bg: var(--ivr-color-white);
-  --ivr-auth-heading-text: var(--ivr-color-black);
-  --ivr-auth-input-label: var(--ivr-color-black);
-  --ivr-auth-hero-heading: var(--ivr-color-black);
-  --ivr-auth-feature-text: var(--ivr-color-black);
-  --ivr-auth-subtitle-text: var(--ivr-neutral-normal);
-  --ivr-auth-hero-desc: var(--ivr-neutral-normal);
-  --ivr-auth-input-border: var(--ivr-neutral-light-hover);
-  --ivr-auth-input-placeholder: var(--ivr-neutral-light-hover);
-  --ivr-auth-divider: var(--ivr-neutral-light);
-  --ivr-auth-badge-bg: var(--ivr-secondary-light);
-  --ivr-auth-badge-border: var(--ivr-secondary-normal);
-  --ivr-auth-badge-text: var(--ivr-secondary-normal);
-  --ivr-auth-button-bg: var(--ivr-secondary-normal);
-  --ivr-auth-feature-shadow: var(--ivr-shadow-sm);
   --ivr-auth-logo-primary: var(--ivr-primary-normal);
   --ivr-auth-logo-secondary: var(--ivr-secondary-normal);
+
+  /* ==================== SHELL AMBIENT GLOW ====================
+     Figma "Full Desktop": the app shell (node 1252:42855 light / 1252:43188
+     dark) and the login page (node 1594:101534 light / 1594:101672 dark) carry
+     the same layer stack over the same --ivr-color-white base, so
+     .main-content-apps and .auth-page share this one overlay. The glow sits
+     entirely in the TOP RIGHT, fading to flat base by roughly 65rem down, with
+     the left third untouched.
+
+     The source frames build it from blurred ellipses over a linear gradient,
+     which no single radial reproduces -- these four are a least-squares fit to
+     the rendered frames (RMSE 1.9/255, 97.5% of samples within 4/255), so the
+     numbers are fitted values rather than Figma geometry. Retune them against
+     the frames rather than nudging one by eye.
+
+     Radii and vertical centres are fixed rem (1rem = 10 Figma px, per the root
+     clamp in fonts.css) so the blobs keep their designed size however long the
+     page scrolls; horizontal centres stay percentages so they track the box as
+     it resizes. Centres past 100% are deliberate: the violet's core sits off
+     the right edge in the source, which is what makes its corner falloff
+     asymmetric.
+
+     Pair this with background-color: var(--ivr-color-white) and
+     background-repeat: no-repeat -- without the latter the radials tile. */
+  --ivr-shell-glow-image: radial-gradient(
+      74.5rem 48.4rem at 87% 14.3rem,
+      var(--ivr-shell-glow-lavender) 0%,
+      transparent 89%
+    ),
+    radial-gradient(
+      69.7rem 49.7rem at 61% -7rem,
+      var(--ivr-shell-glow-blue) 0%,
+      transparent 89%
+    ),
+    radial-gradient(
+      58.9rem 56rem at 59% 16.9rem,
+      var(--ivr-shell-glow-sage) 0%,
+      transparent 83%
+    ),
+    radial-gradient(
+      60.9rem 57.5rem at 115% -14rem,
+      var(--ivr-shell-glow-violet) 0%,
+      transparent 96%
+    );
 
   /* ==================== CHIP / BADGE ACCENTS ==================== */
   --ivr-chip-critical: var(--ivr-agentic-error-500);

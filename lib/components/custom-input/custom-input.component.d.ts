@@ -15,7 +15,8 @@ export declare class CustomInputComponent implements ControlValueAccessor {
     id: string;
     value: any;
     height: string;
-    iconLeft: 'mail' | 'lock' | 'none';
+    iconLeft: 'mail' | 'lock' | 'user' | 'building' | 'none';
+    leadingWidth: string;
     ariaLabelShowPassword: string;
     ariaLabelHidePassword: string;
     disabled: boolean;
@@ -34,5 +35,5 @@ export declare class CustomInputComponent implements ControlValueAccessor {
     togglePasswordVisibility(): void;
     get inputType(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<CustomInputComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<CustomInputComponent, "custom-input", never, { "label": { "alias": "label"; "required": false; }; "placeholder": { "alias": "placeholder"; "required": false; }; "type": { "alias": "type"; "required": false; }; "prefix": { "alias": "prefix"; "required": false; }; "suffix": { "alias": "suffix"; "required": false; }; "showStepper": { "alias": "showStepper"; "required": false; }; "step": { "alias": "step"; "required": false; }; "min": { "alias": "min"; "required": false; }; "max": { "alias": "max"; "required": false; }; "errorMessage": { "alias": "errorMessage"; "required": false; }; "showError": { "alias": "showError"; "required": false; }; "id": { "alias": "id"; "required": false; }; "value": { "alias": "value"; "required": false; }; "height": { "alias": "height"; "required": false; }; "iconLeft": { "alias": "iconLeft"; "required": false; }; "ariaLabelShowPassword": { "alias": "ariaLabelShowPassword"; "required": false; }; "ariaLabelHidePassword": { "alias": "ariaLabelHidePassword"; "required": false; }; }, {}, never, never, true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CustomInputComponent, "custom-input", never, { "label": { "alias": "label"; "required": false; }; "placeholder": { "alias": "placeholder"; "required": false; }; "type": { "alias": "type"; "required": false; }; "prefix": { "alias": "prefix"; "required": false; }; "suffix": { "alias": "suffix"; "required": false; }; "showStepper": { "alias": "showStepper"; "required": false; }; "step": { "alias": "step"; "required": false; }; "min": { "alias": "min"; "required": false; }; "max": { "alias": "max"; "required": false; }; "errorMessage": { "alias": "errorMessage"; "required": false; }; "showError": { "alias": "showError"; "required": false; }; "id": { "alias": "id"; "required": false; }; "value": { "alias": "value"; "required": false; }; "height": { "alias": "height"; "required": false; }; "iconLeft": { "alias": "iconLeft"; "required": false; }; "leadingWidth": { "alias": "leadingWidth"; "required": false; }; "ariaLabelShowPassword": { "alias": "ariaLabelShowPassword"; "required": false; }; "ariaLabelHidePassword": { "alias": "ariaLabelHidePassword"; "required": false; }; }, {}, never, ["[inputLeading]"], true, never>;
 }
