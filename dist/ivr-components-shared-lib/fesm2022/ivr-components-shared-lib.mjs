@@ -316,6 +316,11 @@ const CHAT_BASE_URL = new InjectionToken('CHAT_BASE_URL', {
     providedIn: 'root',
     factory: () => window?.env?.chatBaseUrl ?? 'http://10.254.192.8',
 });
+const CHAT_BASE_URL = new InjectionToken('CHAT_BASE_URL', {
+    providedIn: 'root',
+    factory: () => window?.env?.chatBaseUrl ??
+        'http://10.254.192.8',
+});
 
 class AuthBeService {
     http;
