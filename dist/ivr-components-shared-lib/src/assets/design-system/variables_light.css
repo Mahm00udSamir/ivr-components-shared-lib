@@ -278,7 +278,7 @@
      themes, but no existing white token holds still -- --ivr-color-white and
      everything aliased off it (--ivr-text-inverse, --ivr-badge-text-on-accent)
      invert to #121214 in dark. Same literal-pair pattern as
-     --ivr-auth-hero-text and --ivr-status-*-solid-fg. */
+     --ivr-agentic-on-brand and --ivr-status-*-solid-fg. */
   --ivr-conv-panel-on-accent: #ffffff;
   /* Source SVGs on this card are dark by default -- already correct against
      the light card, so no filter is needed here; variables_dark.css inverts
@@ -292,33 +292,13 @@
   --ivr-conv-panel-title-band-fg: var(--ivr-conv-panel-on-accent);
 
   /* ==================== AUTH / LOGIN ====================
-     Figma: IVR Redesign, node 540:21097 (light) / 540:20627 (dark).
-     Generic aliases (--ivr-auth-chip-bg, -heading-text, -badge-*, -button-bg,
-     -feature-*, -input-*, -divider, -subtitle-text, -hero-*) are defined in
-     ivr_tokens.css; the ones below are mirrored here 1:1 with
-     variables_dark.css's overrides -- each currently resolves to exactly what
-     the ivr_tokens.css alias already gives light mode, kept explicit so no
-     token exists in only one theme file. */
-  --ivr-auth-chip-bg: var(--ivr-color-white);
-  --ivr-auth-chip-text: var(--ivr-secondary-normal); /* #25c7bc */
-  --ivr-auth-info-outer-bg: var(--ivr-color-white);
-  --ivr-auth-form-card-bg: var(--ivr-color-white);
-  --ivr-auth-input-bg: var(--ivr-color-white);
-  --ivr-auth-feature-bg: var(--ivr-color-white);
-  --ivr-auth-subtitle-text: var(--ivr-neutral-normal); /* #6c737f */
-  --ivr-auth-hero-desc: var(--ivr-neutral-normal); /* #6c737f */
-  --ivr-auth-input-border: var(--ivr-neutral-light-hover); /* #d2d6db */
-  --ivr-auth-input-placeholder: var(--ivr-neutral-light-hover); /* #d2d6db */
-  --ivr-auth-divider: var(--ivr-neutral-light); /* #e5e7eb */
-  --ivr-auth-badge-bg: var(--ivr-secondary-light); /* #e9f9f8 */
-  --ivr-auth-badge-border: var(--ivr-secondary-normal); /* #25c7bc */
-  --ivr-auth-badge-text: var(--ivr-secondary-normal); /* #25c7bc */
-  --ivr-auth-button-bg: var(--ivr-secondary-normal); /* #25c7bc */
-  --ivr-auth-feature-shadow: var(--ivr-shadow-sm);
+     Figma: IVR Redesign, node 1594:101534 (light) / 1594:101672 (dark). The
+     screen's flat colours are the --ivr-agentic-* roles above; only these
+     composites live here, because no role token can carry a gradient or the
+     two-tone logo mark. Paired 1:1 with variables_dark.css. */
   --ivr-auth-logo-primary: var(--ivr-primary-normal); /* #602650 */
   --ivr-auth-logo-secondary: var(--ivr-secondary-normal); /* #25c7bc */
 
-  --ivr-auth-bg-page: #f6f6f6;
   --ivr-auth-canvas-bg: linear-gradient(
     135deg,
     rgba(231, 245, 246, 1) 6%,
@@ -327,24 +307,11 @@
     rgba(228, 246, 248, 1) 93%
   );
   --ivr-auth-canvas-shadow: 0px 7px 29px 0px rgba(100, 100, 111, 0.2);
-  --ivr-auth-info-outer-border: rgba(37, 199, 188, 0.4);
-  --ivr-auth-form-card-border: rgba(37, 199, 188, 0.4);
   --ivr-auth-hero-underline: linear-gradient(
     90deg,
     rgba(222, 247, 245, 1) 0%,
     rgba(37, 199, 188, 1) 100%
   );
-  --ivr-auth-feature-border: transparent;
-  --ivr-auth-ambient-glow: none;
-
-  /* Theme-invariant: the info card keeps its own fixed teal/white palette in
-     both themes rather than following the generic inversion. Mirrored
-     verbatim in variables_dark.css so no raw value lives in only one file. */
-  --ivr-auth-info-card-bg: #25c7bc;
-  --ivr-auth-info-title: #ffffff;
-  --ivr-auth-info-desc: #ffffff;
-  --ivr-auth-button-text: #ffffff;
-  --ivr-auth-feature-dot: #25c7bc;
 
   /* ==================== SHELL AMBIENT GLOW ====================
      Figma "Full Desktop": node 1252:42855 (light) / 1252:43188 (dark). The
@@ -403,6 +370,22 @@
   --ivr-agentic-information-50: #e5f2ff;
   --ivr-agentic-information-100: #cce5ff;
   --ivr-agentic-information-500: #007bff;
+  --ivr-agentic-brand-500: var(--ivr-secondary-normal);
+  --ivr-agentic-brand-600: var(--ivr-secondary-normal);
+  --ivr-agentic-brand-50: var(--ivr-secondary-light);
+  --ivr-agentic-on-brand: #ffffff;
+  --ivr-agentic-brand-contrast: var(--ivr-secondary-normal);
+  --ivr-agentic-text-900: var(--ivr-color-black);
+  --ivr-agentic-text-500: var(--ivr-neutral-normal);
+  --ivr-agentic-text-300: var(--ivr-neutral-light-hover);
+  --ivr-agentic-border-100: var(--ivr-neutral-light);
+  --ivr-agentic-border-200: var(--ivr-secondary-light-hover);
+  --ivr-agentic-border-300: var(--ivr-neutral-light-active);
+  --ivr-agentic-border-input: var(--ivr-neutral-light);
+  --ivr-agentic-surface-100: var(--ivr-color-white);
+  --ivr-agentic-surface-200: var(--ivr-color-white);
+  --ivr-agentic-surface-input: var(--ivr-color-white);
+  --ivr-agentic-card-shadow: 0px 7px 29px 0px rgba(100, 100, 111, 0.2);
 
   /* Figma Gray/Neutral: Side Bar tab. */
   --ivr-neutral-sidebar-tab: #f1f5f9;
