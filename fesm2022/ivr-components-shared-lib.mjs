@@ -72,7 +72,7 @@ var Roles;
  * together.
  */
 const ROLE_LANDING_ROUTE = {
-    [Roles.ROLE_ADMIN]: '/admin-dashboard/executive',
+    [Roles.ROLE_ADMIN]: '/admin-dashboard/operations',
     [Roles.ROLE_AGENT]: '/admin-dashboard/operations',
     [Roles.ROLE_USER]: '/conversation/me',
 };
