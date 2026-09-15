@@ -265,7 +265,7 @@
   --ivr-chip-success: var(--ivr-agentic-success-500);
   --ivr-chip-info: var(--ivr-agentic-information-500);
   --ivr-chip-neutral: var(--ivr-neutral-normal);
-  --ivr-badge-vip: var(--ivr-gold-normal);
+  --ivr-badge-vip: #f3aa43; /* Figma VIP pill fill, node 1245:41274 */
   --ivr-badge-text-on-accent: var(--ivr-color-white);
 
   /* ==================== CONVERSATION LIST CARD CHIPS ====================
@@ -351,7 +351,7 @@
   --ivr-conv-panel-border: var(--ivr-border-strong);
   --ivr-conv-panel-accent: var(--ivr-secondary-normal);
 
-  --ivr-conv-panel-vip: var(--ivr-gold-normal); /* Profile "VIP Status: Yes" */
+  --ivr-conv-panel-vip: var(--ivr-badge-vip); /* Profile "VIP Status: Yes" */
   --ivr-conv-panel-positive: var(
     --ivr-green-normal
   ); /* Profile "Sentiment: Positive" */
@@ -368,9 +368,7 @@
      literal pair is correct in both themes for every avatar call site. */
   --ivr-conv-panel-avatar-bg: #efefef;
   --ivr-conv-panel-avatar-text: #1f1f1f;
-  --ivr-conv-panel-vip-badge: var(
-    --ivr-lavender-normal
-  ); /* small VIP corner badge on avatars */
+  --ivr-conv-panel-vip-badge: var(--ivr-badge-vip); /* Figma 1245:41274 #f3aa43 */
   --ivr-conv-panel-bubble-user-bg: rgba(
     var(--ivr-primary-rgb),
     0.08
